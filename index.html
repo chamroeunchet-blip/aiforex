@@ -1,0 +1,3959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<meta name="theme-color" content="#080c14">
+
+<title>XAU AI 3</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070a10;
+    color:#f5f7fa;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    width:100%;
+    max-width:1250px;
+    min-height:100vh;
+    margin:auto;
+    background:#0b1018;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:62px;
+
+    padding:
+        0 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:
+        rgba(8,12,20,.96);
+
+    border-bottom:
+        1px solid #202a39;
+
+    backdrop-filter:
+        blur(12px);
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:19px;
+    font-weight:900;
+}
+
+.logo-gold{
+    color:#f5c542;
+}
+
+.logo-small{
+    color:#8b96a8;
+    font-size:11px;
+    font-weight:600;
+}
+
+.live{
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#55e18b;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+.live-dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#39d477;
+
+    box-shadow:
+        0 0 12px #39d477;
+}
+
+
+/* =========================================================
+   PRICE HEADER
+========================================================= */
+
+.price-header{
+
+    padding:18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #0b111b
+        );
+
+    border-bottom:
+        1px solid #202a39;
+}
+
+.symbol-title{
+    font-size:12px;
+    color:#8994a6;
+}
+
+.main-price{
+
+    margin-top:3px;
+
+    font-size:31px;
+    font-weight:900;
+
+    letter-spacing:-1px;
+}
+
+.price-change{
+
+    margin-top:4px;
+
+    color:#45dc83;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.market-open{
+    text-align:right;
+}
+
+.market-open small{
+    color:#737f91;
+}
+
+.market-open strong{
+    display:block;
+    margin-top:5px;
+    color:#48df84;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+    padding:14px;
+}
+
+.section-title{
+
+    margin:
+        10px 0 8px;
+
+    color:#8d98a9;
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   CHART CARD
+========================================================= */
+
+.chart-card{
+
+    background:#0e141e;
+
+    border:
+        1px solid #263143;
+
+    border-radius:16px;
+
+    padding:12px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.18);
+}
+
+.chart-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:10px;
+}
+
+.chart-symbol{
+
+    font-size:15px;
+    font-weight:900;
+}
+
+.chart-symbol span{
+
+    margin-left:6px;
+
+    color:#7e899b;
+
+    font-size:11px;
+}
+
+.chart-live-price{
+
+    color:#47dc82;
+
+    font-size:15px;
+    font-weight:900;
+}
+
+
+/* =========================================================
+   TIMEFRAME BUTTONS
+========================================================= */
+
+.timeframes{
+
+    display:flex;
+
+    gap:5px;
+
+    overflow-x:auto;
+
+    padding-bottom:9px;
+
+    scrollbar-width:none;
+}
+
+.timeframes::-webkit-scrollbar{
+    display:none;
+}
+
+.tf{
+
+    flex:
+        0 0 auto;
+
+    padding:
+        7px 11px;
+
+    border:
+        1px solid #293446;
+
+    border-radius:7px;
+
+    background:#141b28;
+
+    color:#8792a4;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+.tf.active{
+
+    background:#f5c542;
+
+    color:#101010;
+
+    border-color:#f5c542;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.chart-container{
+
+    position:relative;
+
+    width:100%;
+
+    height:430px;
+
+    overflow:hidden;
+
+    border:
+        1px solid #202a39;
+
+    border-radius:10px;
+
+    background:
+        #090e16;
+}
+
+#candleChart{
+
+    width:100%;
+    height:100%;
+
+    display:block;
+}
+
+
+/* chart crosshair */
+
+.crosshair-x,
+.crosshair-y{
+
+    position:absolute;
+
+    pointer-events:none;
+
+    display:none;
+
+    z-index:5;
+}
+
+.crosshair-x{
+
+    left:0;
+    right:0;
+
+    border-top:
+        1px dashed #536174;
+}
+
+.crosshair-y{
+
+    top:0;
+    bottom:0;
+
+    border-left:
+        1px dashed #536174;
+}
+
+
+/* price label */
+
+.current-price-line{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    border-top:
+        1px dashed #47dc82;
+
+    pointer-events:none;
+
+    z-index:4;
+}
+
+.current-price-label{
+
+    position:absolute;
+
+    right:0;
+
+    top:-10px;
+
+    padding:
+        3px 6px;
+
+    border-radius:4px;
+
+    background:#47dc82;
+
+    color:#06130a;
+
+    font-size:9px;
+    font-weight:900;
+}
+
+
+/* trade lines */
+
+.level-line{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    border-top:
+        1px dashed;
+
+    pointer-events:none;
+
+    z-index:3;
+}
+
+.level-label{
+
+    position:absolute;
+
+    right:0;
+
+    top:-10px;
+
+    padding:
+        3px 6px;
+
+    border-radius:4px;
+
+    font-size:8px;
+    font-weight:900;
+}
+
+.entry-line{
+    border-color:#f5c542;
+}
+
+.entry-label{
+    background:#f5c542;
+    color:#111;
+}
+
+.tp-line{
+    border-color:#42d77d;
+}
+
+.tp-label{
+    background:#42d77d;
+    color:#06130a;
+}
+
+.sl-line{
+    border-color:#ff5c70;
+}
+
+.sl-label{
+    background:#ff5c70;
+    color:#160508;
+}
+
+
+/* =========================================================
+   CHART INFO
+========================================================= */
+
+.ohlc{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:6px;
+
+    margin-top:9px;
+}
+
+.ohlc-item{
+
+    padding:8px;
+
+    border-radius:8px;
+
+    background:#141b27;
+
+    border:
+        1px solid #222c3c;
+}
+
+.ohlc-item span{
+
+    display:block;
+
+    color:#758195;
+
+    font-size:9px;
+}
+
+.ohlc-item strong{
+
+    display:block;
+
+    margin-top:3px;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   DECISION
+========================================================= */
+
+.decision{
+
+    padding:17px;
+
+    border:
+        1px solid #293446;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111927,
+            #0d131d
+        );
+}
+
+.decision-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.signal{
+
+    font-size:29px;
+    font-weight:950;
+}
+
+.buy{
+    color:#45dc83;
+}
+
+.sell{
+    color:#ff5c70;
+}
+
+.wait{
+    color:#f5c542;
+}
+
+.confidence{
+    text-align:right;
+}
+
+.confidence strong{
+
+    display:block;
+
+    font-size:23px;
+}
+
+.confidence span{
+
+    color:#7d899a;
+
+    font-size:10px;
+}
+
+.trade-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:7px;
+
+    margin-top:17px;
+}
+
+.trade-box{
+
+    padding:10px;
+
+    border-radius:9px;
+
+    background:#151e2b;
+
+    border:
+        1px solid #222e40;
+}
+
+.trade-box span{
+
+    display:block;
+
+    color:#788497;
+
+    font-size:9px;
+}
+
+.trade-box strong{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   STYLE
+========================================================= */
+
+.style-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+}
+
+.style-btn{
+
+    padding:12px;
+
+    border:
+        1px solid #293447;
+
+    border-radius:9px;
+
+    background:#121925;
+
+    color:#8994a6;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+.style-btn.active{
+
+    color:#f5c542;
+
+    border-color:#f5c542;
+
+    background:#171c25;
+}
+
+
+/* =========================================================
+   AI CARDS
+========================================================= */
+
+.ai-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:9px;
+}
+
+.ai-card{
+
+    padding:14px;
+
+    border:
+        1px solid #263143;
+
+    border-radius:14px;
+
+    background:#111823;
+}
+
+.ai-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:12px;
+    font-weight:900;
+}
+
+.ai-icon{
+
+    width:29px;
+    height:29px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    background:#1d2736;
+}
+
+.ai-signal{
+
+    margin-top:13px;
+
+    font-size:18px;
+    font-weight:900;
+}
+
+.ai-reason{
+
+    margin-top:7px;
+
+    color:#778396;
+
+    font-size:10px;
+
+    line-height:1.5;
+}
+
+.conf-bar{
+
+    height:5px;
+
+    margin-top:11px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:#202a38;
+}
+
+.conf-fill{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:#f5c542;
+}
+
+
+/* =========================================================
+   MARKET STRUCTURE
+========================================================= */
+
+.market-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:7px;
+}
+
+.market-box{
+
+    padding:11px;
+
+    border:
+        1px solid #252f40;
+
+    border-radius:9px;
+
+    background:#111823;
+}
+
+.market-box span{
+
+    color:#778397;
+
+    font-size:9px;
+}
+
+.market-box strong{
+
+    display:block;
+
+    margin-top:4px;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   LOT CALCULATOR
+========================================================= */
+
+.calculator{
+
+    padding:15px;
+
+    border:
+        1px solid #293446;
+
+    border-radius:14px;
+
+    background:#111823;
+}
+
+.calc-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:8px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#7d899b;
+
+    font-size:9px;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:10px;
+
+    border:
+        1px solid #293447;
+
+    border-radius:8px;
+
+    outline:none;
+
+    background:#090f17;
+
+    color:#fff;
+
+    font-size:12px;
+}
+
+.input-group input:focus{
+
+    border-color:#f5c542;
+}
+
+.calculate-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#f5c542;
+
+    color:#111;
+
+    font-weight:900;
+
+    font-size:11px;
+}
+
+.lot-result{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:9px;
+
+    padding:11px;
+
+    border-radius:8px;
+
+    background:#0a1018;
+}
+
+.lot-result span{
+
+    color:#8290a4;
+
+    font-size:10px;
+}
+
+.lot-result strong{
+
+    color:#f5c542;
+
+    font-size:18px;
+}
+
+
+/* =========================================================
+   ANALYZE BUTTON
+========================================================= */
+
+.analyze-btn{
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5c542,
+            #dcae26
+        );
+
+    color:#111;
+
+    font-weight:950;
+
+    font-size:13px;
+}
+
+.analyze-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat{
+
+    height:360px;
+
+    padding:12px;
+
+    overflow-y:auto;
+
+    border:
+        1px solid #273143;
+
+    border-radius:14px;
+
+    background:#080d14;
+}
+
+.message{
+
+    max-width:86%;
+
+    margin-bottom:10px;
+
+    padding:11px 13px;
+
+    border-radius:13px;
+
+    font-size:12px;
+
+    line-height:1.55;
+}
+
+.ai-message{
+
+    background:#151e2b;
+
+    border-bottom-left-radius:3px;
+}
+
+.user-message{
+
+    margin-left:auto;
+
+    background:#f5c542;
+
+    color:#111;
+
+    border-bottom-right-radius:3px;
+}
+
+.chat-input-row{
+
+    display:flex;
+
+    gap:7px;
+
+    margin-top:8px;
+}
+
+.chat-input{
+
+    flex:1;
+
+    padding:12px;
+
+    border:
+        1px solid #293447;
+
+    border-radius:9px;
+
+    outline:none;
+
+    background:#0b111a;
+
+    color:#fff;
+
+    font-size:12px;
+}
+
+.send-btn{
+
+    width:48px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#f5c542;
+
+    color:#111;
+
+    font-size:17px;
+    font-weight:900;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    padding:25px 10px;
+
+    text-align:center;
+
+    color:#566275;
+
+    font-size:9px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:760px){
+
+    .header{
+        height:57px;
+        padding:0 13px;
+    }
+
+    .content{
+        padding:10px;
+    }
+
+    .price-header{
+        padding:14px;
+    }
+
+    .main-price{
+        font-size:26px;
+    }
+
+    .chart-container{
+        height:340px;
+    }
+
+    .trade-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .ai-grid{
+        grid-template-columns:1fr;
+    }
+
+    .market-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .calc-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:420px){
+
+    .chart-container{
+        height:300px;
+    }
+
+    .signal{
+        font-size:25px;
+    }
+
+    .trade-grid{
+        gap:5px;
+    }
+
+    .trade-box{
+        padding:9px;
+    }
+
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    display:inline-block;
+
+    width:12px;
+    height:12px;
+
+    border:
+        2px solid #111;
+
+    border-top-color:
+        transparent;
+
+    border-radius:50%;
+
+    animation:
+        spin .7s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="app">
+
+
+<!-- ======================================================
+     HEADER
+======================================================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        🥇
+
+        <span class="logo-gold">
+            XAU AI 3
+        </span>
+
+        <span class="logo-small">
+            MULTI-AI
+        </span>
+
+    </div>
+
+    <div class="live">
+
+        <span class="live-dot"></span>
+
+        LIVE
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     PRICE HEADER
+======================================================= -->
+
+<section class="price-header">
+
+    <div>
+
+        <div class="symbol-title">
+            GOLD / US DOLLAR
+        </div>
+
+        <div class="main-price"
+             id="mainPrice">
+
+            $4,000.00
+
+        </div>
+
+        <div class="price-change"
+             id="priceChange">
+
+            +0.00%
+
+        </div>
+
+    </div>
+
+
+    <div class="market-open">
+
+        <small>
+            Market
+        </small>
+
+        <strong>
+            ● OPEN
+        </strong>
+
+    </div>
+
+</section>
+
+
+<main class="content">
+
+
+<!-- ======================================================
+     CHART
+======================================================= -->
+
+<div class="section-title">
+    📊 XAU/USD Market Chart
+</div>
+
+
+<section class="chart-card">
+
+
+    <div class="chart-header">
+
+        <div class="chart-symbol">
+
+            XAU/USD
+
+            <span id="chartTF">
+                M5
+            </span>
+
+        </div>
+
+        <div class="chart-live-price">
+
+            $
+            <span id="chartPrice">
+                4000.00
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="timeframes">
+
+        <button class="tf"
+                onclick="changeTF(this,'M1')">
+
+            M1
+
+        </button>
+
+        <button class="tf active"
+                onclick="changeTF(this,'M5')">
+
+            M5
+
+        </button>
+
+        <button class="tf"
+                onclick="changeTF(this,'M15')">
+
+            M15
+
+        </button>
+
+        <button class="tf"
+                onclick="changeTF(this,'H1')">
+
+            H1
+
+        </button>
+
+        <button class="tf"
+                onclick="changeTF(this,'H4')">
+
+            H4
+
+        </button>
+
+        <button class="tf"
+                onclick="changeTF(this,'D1')">
+
+            D1
+
+        </button>
+
+    </div>
+
+
+    <div class="chart-container"
+         id="chartContainer">
+
+        <canvas id="candleChart"></canvas>
+
+
+        <div class="crosshair-x"
+             id="crossX">
+        </div>
+
+        <div class="crosshair-y"
+             id="crossY">
+        </div>
+
+
+        <div class="current-price-line"
+             id="currentPriceLine">
+
+            <span class="current-price-label"
+                  id="currentPriceLabel">
+
+                4000.00
+
+            </span>
+
+        </div>
+
+
+        <div class="level-line entry-line"
+             id="entryLine">
+
+            <span class="level-label entry-label">
+                ENTRY
+            </span>
+
+        </div>
+
+
+        <div class="level-line tp-line"
+             id="tp1Line">
+
+            <span class="level-label tp-label">
+                TP1
+            </span>
+
+        </div>
+
+
+        <div class="level-line tp-line"
+             id="tp2Line">
+
+            <span class="level-label tp-label">
+                TP2
+            </span>
+
+        </div>
+
+
+        <div class="level-line sl-line"
+             id="slLine">
+
+            <span class="level-label sl-label">
+                SL
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="ohlc">
+
+        <div class="ohlc-item">
+
+            <span>
+                OPEN
+            </span>
+
+            <strong id="openPrice">
+                3996.20
+            </strong>
+
+        </div>
+
+        <div class="ohlc-item">
+
+            <span>
+                HIGH
+            </span>
+
+            <strong id="highPrice">
+                4004.80
+            </strong>
+
+        </div>
+
+        <div class="ohlc-item">
+
+            <span>
+                LOW
+            </span>
+
+            <strong id="lowPrice">
+                3993.10
+            </strong>
+
+        </div>
+
+        <div class="ohlc-item">
+
+            <span>
+                CLOSE
+            </span>
+
+            <strong id="closePrice">
+                4000.00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ======================================================
+     AI DECISION
+======================================================= -->
+
+<div class="section-title">
+    🎯 Multi-AI Decision
+</div>
+
+
+<section class="decision">
+
+
+    <div class="decision-top">
+
+        <div>
+
+            <div class="signal buy"
+                 id="signal">
+
+                🟢 BUY
+
+            </div>
+
+            <div style="
+                margin-top:4px;
+                color:#7c8798;
+                font-size:10px;
+            ">
+
+                ChatGPT + Gemini + DeepSeek
+
+            </div>
+
+        </div>
+
+
+        <div class="confidence">
+
+            <strong id="confidence">
+                78%
+            </strong>
+
+            <span>
+                Confidence
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="trade-grid">
+
+
+        <div class="trade-box">
+
+            <span>
+                ENTRY
+            </span>
+
+            <strong id="entry">
+                4000.00
+            </strong>
+
+        </div>
+
+
+        <div class="trade-box">
+
+            <span>
+                TP1
+            </span>
+
+            <strong id="tp1">
+                4007.00
+            </strong>
+
+        </div>
+
+
+        <div class="trade-box">
+
+            <span>
+                TP2
+            </span>
+
+            <strong id="tp2">
+                4014.00
+            </strong>
+
+        </div>
+
+
+        <div class="trade-box">
+
+            <span>
+                TP3
+            </span>
+
+            <strong id="tp3">
+                4025.00
+            </strong>
+
+        </div>
+
+
+        <div class="trade-box">
+
+            <span>
+                STOP LOSS
+            </span>
+
+            <strong id="sl">
+                3988.00
+            </strong>
+
+        </div>
+
+
+        <div class="trade-box">
+
+            <span>
+                RISK / REWARD
+            </span>
+
+            <strong id="rr">
+                1 : 2.08
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ======================================================
+     TRADING STYLE
+======================================================= -->
+
+<div class="section-title">
+    ⏱ Trading Style
+</div>
+
+
+<div class="style-grid">
+
+
+    <button class="style-btn active"
+            onclick="setTradingStyle(this,'SHORT TERM')">
+
+        ⚡ SHORT TERM
+
+    </button>
+
+
+    <button class="style-btn"
+            onclick="setTradingStyle(this,'LONG TERM')">
+
+        📈 LONG TERM
+
+    </button>
+
+
+</div>
+
+
+<!-- ======================================================
+     AI ANALYSIS
+======================================================= -->
+
+<div class="section-title">
+    🤖 AI Analysis
+</div>
+
+
+<div class="ai-grid">
+
+
+    <!-- CHATGPT -->
+
+    <div class="ai-card">
+
+        <div class="ai-header">
+
+            <div class="ai-icon">
+                🟢
+            </div>
+
+            ChatGPT
+
+        </div>
+
+
+        <div class="ai-signal buy"
+             id="chatgptSignal">
+
+            BUY
+
+        </div>
+
+
+        <div class="ai-reason"
+             id="chatgptReason">
+
+            M5/M15 structure is currently
+            bullish in this prototype.
+
+        </div>
+
+
+        <div class="conf-bar">
+
+            <div class="conf-fill"
+                 id="chatgptBar"
+                 style="width:82%">
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            margin-top:5px;
+            color:#718095;
+            font-size:9px;
+        ">
+
+            Confidence:
+            <span id="chatgptConfidence">
+                82%
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- GEMINI -->
+
+    <div class="ai-card">
+
+        <div class="ai-header">
+
+            <div class="ai-icon">
+                🔵
+            </div>
+
+            Gemini
+
+        </div>
+
+
+        <div class="ai-signal buy"
+             id="geminiSignal">
+
+            BUY
+
+        </div>
+
+
+        <div class="ai-reason"
+             id="geminiReason">
+
+            Momentum remains positive,
+            but volatility needs monitoring.
+
+        </div>
+
+
+        <div class="conf-bar">
+
+            <div class="conf-fill"
+                 id="geminiBar"
+                 style="width:76%">
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            margin-top:5px;
+            color:#718095;
+            font-size:9px;
+        ">
+
+            Confidence:
+            <span id="geminiConfidence">
+                76%
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- DEEPSEEK -->
+
+    <div class="ai-card">
+
+        <div class="ai-header">
+
+            <div class="ai-icon">
+                🟣
+            </div>
+
+            DeepSeek
+
+        </div>
+
+
+        <div class="ai-signal wait"
+             id="deepseekSignal">
+
+            WAIT
+
+        </div>
+
+
+        <div class="ai-reason"
+             id="deepseekReason">
+
+            Statistical confirmation is
+            not strong enough yet.
+
+        </div>
+
+
+        <div class="conf-bar">
+
+            <div class="conf-fill"
+                 id="deepseekBar"
+                 style="width:61%">
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            margin-top:5px;
+            color:#718095;
+            font-size:9px;
+        ">
+
+            Confidence:
+            <span id="deepseekConfidence">
+                61%
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- ======================================================
+     MARKET STRUCTURE
+======================================================= -->
+
+<div class="section-title">
+    📈 Market Structure
+</div>
+
+
+<div class="market-grid">
+
+
+    <div class="market-box">
+
+        <span>
+            M5
+        </span>
+
+        <strong class="buy">
+            🟢 Bullish
+        </strong>
+
+    </div>
+
+
+    <div class="market-box">
+
+        <span>
+            M15
+        </span>
+
+        <strong class="buy">
+            🟢 Bullish
+        </strong>
+
+    </div>
+
+
+    <div class="market-box">
+
+        <span>
+            H1
+        </span>
+
+        <strong class="wait">
+            🟡 Neutral
+        </strong>
+
+    </div>
+
+
+    <div class="market-box">
+
+        <span>
+            H4
+        </span>
+
+        <strong class="sell">
+            🔴 Bearish
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+<!-- ======================================================
+     LOT CALCULATOR
+======================================================= -->
+
+<div class="section-title">
+    💰 Position / Lot Calculator
+</div>
+
+
+<section class="calculator">
+
+
+    <div class="calc-grid">
+
+
+        <div class="input-group">
+
+            <label>
+                Balance ($)
+            </label>
+
+            <input
+                id="balance"
+                type="number"
+                value="1000"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Risk (%)
+            </label>
+
+            <input
+                id="risk"
+                type="number"
+                value="1"
+                min=".1"
+                step=".1"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Entry
+            </label>
+
+            <input
+                id="calcEntry"
+                type="number"
+                value="4000"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Stop Loss
+            </label>
+
+            <input
+                id="calcSL"
+                type="number"
+                value="3988"
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <button class="calculate-btn"
+            onclick="calculateLot()">
+
+        CALCULATE LOT SIZE
+
+    </button>
+
+
+    <div class="lot-result">
+
+        <span>
+            Recommended Lot
+        </span>
+
+        <strong id="lot">
+            0.08
+        </strong>
+
+    </div>
+
+
+</section>
+
+
+<!-- ======================================================
+     ANALYZE
+======================================================= -->
+
+<button
+    class="analyze-btn"
+    id="analyzeBtn"
+    onclick="runMultiAI()">
+
+    🧠 RUN MULTI-AI ANALYSIS
+
+</button>
+
+
+<!-- ======================================================
+     CHAT
+======================================================= -->
+
+<div class="section-title">
+    💬 XAU AI Chat
+</div>
+
+
+<section class="chat"
+         id="chat">
+
+
+    <div class="message ai-message">
+
+        👋 <b>XAU AI 3</b>
+
+        <br><br>
+
+        I am your multi-AI XAU/USD
+        trading analysis assistant.
+
+        <br><br>
+
+        You can ask:
+
+        <br>
+        • Should I BUY or SELL?
+        <br>
+        • Where is TP1 / TP2 / TP3?
+        <br>
+        • Where should SL be?
+        <br>
+        • Short term or long term?
+        <br>
+        • What is the risk?
+        <br>
+        • Calculate lot size.
+        <br>
+        • Analyze M5 / M15 / H1.
+
+    </div>
+
+
+</section>
+
+
+<div class="chat-input-row">
+
+    <input
+        class="chat-input"
+        id="chatInput"
+        placeholder="Ask XAU AI..."
+        autocomplete="off"
+    >
+
+    <button
+        class="send-btn"
+        onclick="sendChat()">
+
+        ➤
+
+    </button>
+
+</div>
+
+
+<!-- ======================================================
+     FOOTER
+======================================================= -->
+
+<div class="footer">
+
+    XAU AI 3
+    <br>
+
+    Multi-Agent Gold Trading Assistant
+
+    <br><br>
+
+    ⚠️ Prototype only.
+    Market prices and AI analysis are simulated.
+    Trading involves substantial risk.
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let currentTF = "M5";
+
+let tradingStyle = "SHORT TERM";
+
+let currentPrice = 4000;
+
+let candles = [];
+
+let candleTimer;
+
+let canvas;
+
+let ctx;
+
+let chartWidth;
+
+let chartHeight;
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        canvas =
+            document.getElementById(
+                "candleChart"
+            );
+
+        ctx =
+            canvas.getContext("2d");
+
+        generateCandles();
+
+        resizeCanvas();
+
+        calculateLot();
+
+        startMarket();
+
+    }
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+function resizeCanvas(){
+
+    if(!canvas) return;
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        rect.width * dpr;
+
+    canvas.height =
+        rect.height * dpr;
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+    chartWidth =
+        rect.width;
+
+    chartHeight =
+        rect.height;
+
+    drawChart();
+
+}
+
+
+/* =========================================================
+   GENERATE CANDLES
+========================================================= */
+
+function generateCandles(){
+
+    candles = [];
+
+    let price =
+        currentPrice - 35;
+
+
+    for(
+        let i=0;
+        i<65;
+        i++
+    ){
+
+        const open =
+            price;
+
+        const volatility =
+            currentTF === "M1"
+            ? 1.3
+            : currentTF === "M5"
+            ? 2.2
+            : currentTF === "M15"
+            ? 3.2
+            : currentTF === "H1"
+            ? 6
+            : currentTF === "H4"
+            ? 10
+            : 16;
+
+
+        const move =
+            (
+                Math.random() - .47
+            ) * volatility;
+
+
+        const close =
+            open + move;
+
+
+        const high =
+            Math.max(
+                open,
+                close
+            )
+            +
+            Math.random()
+            * volatility;
+
+
+        const low =
+            Math.min(
+                open,
+                close
+            )
+            -
+            Math.random()
+            * volatility;
+
+
+        candles.push({
+
+            open,
+            high,
+            low,
+            close
+
+        });
+
+
+        price =
+            close;
+
+    }
+
+
+    currentPrice =
+        candles[
+            candles.length - 1
+        ].close;
+
+}
+
+
+/* =========================================================
+   DRAW CHART
+========================================================= */
+
+function drawChart(){
+
+    if(
+        !ctx ||
+        !candles.length
+    ){
+        return;
+    }
+
+
+    ctx.clearRect(
+        0,
+        0,
+        chartWidth,
+        chartHeight
+    );
+
+
+    /* background */
+
+    ctx.fillStyle =
+        "#090e16";
+
+    ctx.fillRect(
+        0,
+        0,
+        chartWidth,
+        chartHeight
+    );
+
+
+    /* grid */
+
+    drawGrid();
+
+
+    /* price range */
+
+    const highs =
+        candles.map(
+            c => c.high
+        );
+
+    const lows =
+        candles.map(
+            c => c.low
+        );
+
+
+    const max =
+        Math.max(...highs)
+        + 2;
+
+    const min =
+        Math.min(...lows)
+        - 2;
+
+
+    const range =
+        max - min;
+
+
+    function priceY(price){
+
+        return (
+            chartHeight -
+            (
+                (price - min)
+                / range
+            )
+            *
+            (chartHeight - 20)
+        ) - 10;
+
+    }
+
+
+    const candleSpace =
+        chartWidth /
+        candles.length;
+
+
+    const bodyWidth =
+        Math.max(
+            2,
+            candleSpace * .55
+        );
+
+
+    candles.forEach(
+        (candle,index) => {
+
+
+            const x =
+                index *
+                candleSpace
+                +
+                candleSpace / 2;
+
+
+            const openY =
+                priceY(
+                    candle.open
+                );
+
+
+            const closeY =
+                priceY(
+                    candle.close
+                );
+
+
+            const highY =
+                priceY(
+                    candle.high
+                );
+
+
+            const lowY =
+                priceY(
+                    candle.low
+                );
+
+
+            const bullish =
+                candle.close
+                >=
+                candle.open;
+
+
+            const color =
+                bullish
+                ? "#42d77d"
+                : "#ff5c70";
+
+
+            /* wick */
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x,
+                highY
+            );
+
+            ctx.lineTo(
+                x,
+                lowY
+            );
+
+            ctx.lineWidth = 1;
+
+            ctx.strokeStyle =
+                color;
+
+            ctx.stroke();
+
+
+            /* body */
+
+            const bodyTop =
+                Math.min(
+                    openY,
+                    closeY
+                );
+
+
+            const bodyHeight =
+                Math.max(
+                    2,
+                    Math.abs(
+                        closeY -
+                        openY
+                    )
+                );
+
+
+            ctx.fillStyle =
+                color;
+
+
+            ctx.fillRect(
+                x -
+                bodyWidth / 2,
+                bodyTop,
+                bodyWidth,
+                bodyHeight
+            );
+
+        }
+    );
+
+
+    updateChartLabels(
+        min,
+        max,
+        priceY
+    );
+
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+function drawGrid(){
+
+    ctx.strokeStyle =
+        "rgba(255,255,255,.035)";
+
+    ctx.lineWidth = 1;
+
+
+    const horizontal = 8;
+
+    for(
+        let i=1;
+        i<horizontal;
+        i++
+    ){
+
+        const y =
+            chartHeight /
+            horizontal *
+            i;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            chartWidth,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    const vertical = 10;
+
+    for(
+        let i=1;
+        i<vertical;
+        i++
+    ){
+
+        const x =
+            chartWidth /
+            vertical *
+            i;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            0
+        );
+
+        ctx.lineTo(
+            x,
+            chartHeight
+        );
+
+        ctx.stroke();
+
+    }
+
+}
+
+
+/* =========================================================
+   CHART LABELS
+========================================================= */
+
+function updateChartLabels(
+    min,
+    max,
+    priceY
+){
+
+    const last =
+        candles[
+            candles.length - 1
+        ];
+
+
+    currentPrice =
+        last.close;
+
+
+    document.getElementById(
+        "chartPrice"
+    ).innerText =
+        currentPrice.toFixed(2);
+
+
+    document.getElementById(
+        "mainPrice"
+    ).innerText =
+        "$" +
+        currentPrice.toFixed(2);
+
+
+    const change =
+        (
+            (
+                currentPrice -
+                4000
+            )
+            /
+            4000
+        ) * 100;
+
+
+    const changeEl =
+        document.getElementById(
+            "priceChange"
+        );
+
+
+    changeEl.innerText =
+        (
+            change >= 0
+            ? "+"
+            : ""
+        )
+        +
+        change.toFixed(2)
+        +
+        "%";
+
+
+    changeEl.style.color =
+        change >= 0
+        ? "#45dc83"
+        : "#ff5c70";
+
+
+    document.getElementById(
+        "openPrice"
+    ).innerText =
+        last.open.toFixed(2);
+
+
+    document.getElementById(
+        "highPrice"
+    ).innerText =
+        last.high.toFixed(2);
+
+
+    document.getElementById(
+        "lowPrice"
+    ).innerText =
+        last.low.toFixed(2);
+
+
+    document.getElementById(
+        "closePrice"
+    ).innerText =
+        last.close.toFixed(2);
+
+
+    /* current price */
+
+    setLine(
+        "currentPriceLine",
+        priceY(currentPrice)
+    );
+
+
+    document.getElementById(
+        "currentPriceLabel"
+    ).innerText =
+        currentPrice.toFixed(2);
+
+
+    /* entry */
+
+    const entry =
+        parseFloat(
+            document.getElementById(
+                "entry"
+            ).innerText
+        );
+
+
+    const tp1 =
+        parseFloat(
+            document.getElementById(
+                "tp1"
+            ).innerText
+        );
+
+
+    const tp2 =
+        parseFloat(
+            document.getElementById(
+                "tp2"
+            ).innerText
+        );
+
+
+    const sl =
+        parseFloat(
+            document.getElementById(
+                "sl"
+            ).innerText
+        );
+
+
+    setLine(
+        "entryLine",
+        priceY(entry)
+    );
+
+
+    setLine(
+        "tp1Line",
+        priceY(tp1)
+    );
+
+
+    setLine(
+        "tp2Line",
+        priceY(tp2)
+    );
+
+
+    setLine(
+        "slLine",
+        priceY(sl)
+    );
+
+}
+
+
+/* =========================================================
+   SET LINE
+========================================================= */
+
+function setLine(
+    id,
+    y
+){
+
+    const el =
+        document.getElementById(id);
+
+    if(!el) return;
+
+    el.style.top =
+        Math.max(
+            0,
+            Math.min(
+                chartHeight - 1,
+                y
+            )
+        )
+        +
+        "px";
+
+}
+
+
+/* =========================================================
+   CHANGE TIMEFRAME
+========================================================= */
+
+function changeTF(
+    button,
+    tf
+){
+
+    document
+        .querySelectorAll(".tf")
+        .forEach(
+            b =>
+                b.classList.remove(
+                    "active"
+                )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    currentTF =
+        tf;
+
+
+    document.getElementById(
+        "chartTF"
+    ).innerText =
+        tf;
+
+
+    generateCandles();
+
+    drawChart();
+
+
+    addAIMessage(
+        "📊 Timeframe changed to <b>"
+        +
+        tf
+        +
+        "</b>."
+    );
+
+}
+
+
+/* =========================================================
+   MARKET TICK
+========================================================= */
+
+function startMarket(){
+
+    clearInterval(
+        candleTimer
+    );
+
+
+    candleTimer =
+        setInterval(
+            marketTick,
+            1500
+        );
+
+}
+
+
+function marketTick(){
+
+    if(!candles.length)
+        return;
+
+
+    const last =
+        candles[
+            candles.length - 1
+        ];
+
+
+    const volatility =
+        currentTF === "M1"
+        ? .7
+        : currentTF === "M5"
+        ? 1.2
+        : currentTF === "M15"
+        ? 1.8
+        : currentTF === "H1"
+        ? 3
+        : 5;
+
+
+    const move =
+        (
+            Math.random() - .48
+        )
+        *
+        volatility;
+
+
+    last.close += move;
+
+
+    last.high =
+        Math.max(
+            last.high,
+            last.close
+        );
+
+
+    last.low =
+        Math.min(
+            last.low,
+            last.close
+        );
+
+
+    drawChart();
+
+}
+
+
+/* =========================================================
+   TRADING STYLE
+========================================================= */
+
+function setTradingStyle(
+    button,
+    style
+){
+
+    document
+        .querySelectorAll(
+            ".style-btn"
+        )
+        .forEach(
+            b =>
+                b.classList.remove(
+                    "active"
+                )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    tradingStyle =
+        style;
+
+
+    addAIMessage(
+        "Trading style set to <b>"
+        +
+        style
+        +
+        "</b>."
+    );
+
+}
+
+
+/* =========================================================
+   LOT CALCULATOR
+========================================================= */
+
+function calculateLot(){
+
+    const balance =
+        parseFloat(
+            document.getElementById(
+                "balance"
+            ).value
+        );
+
+
+    const risk =
+        parseFloat(
+            document.getElementById(
+                "risk"
+            ).value
+        );
+
+
+    const entry =
+        parseFloat(
+            document.getElementById(
+                "calcEntry"
+            ).value
+        );
+
+
+    const sl =
+        parseFloat(
+            document.getElementById(
+                "calcSL"
+            ).value
+        );
+
+
+    if(
+        !balance ||
+        !risk ||
+        !entry ||
+        !sl
+    ){
+
+        document.getElementById(
+            "lot"
+        ).innerText =
+            "0.00";
+
+        return;
+
+    }
+
+
+    const riskMoney =
+        balance *
+        risk /
+        100;
+
+
+    const distance =
+        Math.abs(
+            entry -
+            sl
+        );
+
+
+    /*
+       DEMO FORMULA ONLY.
+
+       Real broker calculation must use:
+
+       Contract Size
+       Tick Size
+       Tick Value
+       Account Currency
+       Symbol specification
+       Broker digits
+    */
+
+    const contractSize =
+        100;
+
+
+    let lot =
+        riskMoney /
+        (
+            distance *
+            contractSize
+        );
+
+
+    lot =
+        Math.max(
+            .01,
+            lot
+        );
+
+
+    lot =
+        Math.floor(
+            lot * 100
+        )
+        / 100;
+
+
+    document.getElementById(
+        "lot"
+    ).innerText =
+        lot.toFixed(2);
+
+}
+
+
+/* =========================================================
+   MULTI AI ANALYSIS
+========================================================= */
+
+function runMultiAI(){
+
+    const button =
+        document.getElementById(
+            "analyzeBtn"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.innerHTML =
+        '<span class="loading"></span> ANALYZING...';
+
+
+    setTimeout(
+        () => {
+
+
+            const price =
+                currentPrice;
+
+
+            /*
+               Prototype analysis.
+
+               Real version:
+               AI receives actual OHLC,
+               indicators and market data.
+            */
+
+
+            const signal =
+                Math.random() > .35
+                ? "BUY"
+                : "WAIT";
+
+
+            const confidence =
+                signal === "BUY"
+                ? 76 +
+                  Math.floor(
+                      Math.random() * 10
+                  )
+                : 58 +
+                  Math.floor(
+                      Math.random() * 10
+                  );
+
+
+            updateDecision(
+                signal,
+                confidence,
+                price
+            );
+
+
+            updateAIResults(
+                signal
+            );
+
+
+            addAIMessage(
+
+                "🧠 <b>Multi-AI analysis completed.</b>"
+                +
+                "<br><br>"
+                +
+                "ChatGPT → "
+                +
+                document.getElementById(
+                    "chatgptSignal"
+                ).innerText
+                +
+                "<br>"
+                +
+                "Gemini → "
+                +
+                document.getElementById(
+                    "geminiSignal"
+                ).innerText
+                +
+                "<br>"
+                +
+                "DeepSeek → "
+                +
+                document.getElementById(
+                    "deepseekSignal"
+                ).innerText
+                +
+                "<br><br>"
+                +
+                "🎯 Consensus → <b>"
+                +
+                signal
+                +
+                "</b>"
+                +
+                "<br>"
+                +
+                "Confidence → "
+                +
+                confidence
+                +
+                "%"
+                +
+                "<br>"
+                +
+                "Timeframe → "
+                +
+                currentTF
+                +
+                "<br>"
+                +
+                "Mode → "
+                +
+                tradingStyle
+
+            );
+
+
+            button.disabled =
+                false;
+
+
+            button.innerHTML =
+                "🧠 RUN MULTI-AI ANALYSIS";
+
+
+        },
+        1800
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE DECISION
+========================================================= */
+
+function updateDecision(
+    signal,
+    confidence,
+    price
+){
+
+    const signalEl =
+        document.getElementById(
+            "signal"
+        );
+
+
+    signalEl.className =
+        "signal " +
+        (
+            signal === "BUY"
+            ? "buy"
+            : signal === "SELL"
+            ? "sell"
+            : "wait"
+        );
+
+
+    signalEl.innerText =
+        signal === "BUY"
+        ? "🟢 BUY"
+        : signal === "SELL"
+        ? "🔴 SELL"
+        : "🟡 WAIT";
+
+
+    document.getElementById(
+        "confidence"
+    ).innerText =
+        confidence +
+        "%";
+
+
+    let entry =
+        price;
+
+
+    let tp1;
+    let tp2;
+    let tp3;
+    let sl;
+
+
+    if(signal === "BUY"){
+
+        tp1 =
+            entry + 7;
+
+        tp2 =
+            entry + 14;
+
+        tp3 =
+            entry + 25;
+
+        sl =
+            entry - 12;
+
+    }
+    else if(signal === "SELL"){
+
+        tp1 =
+            entry - 7;
+
+        tp2 =
+            entry - 14;
+
+        tp3 =
+            entry - 25;
+
+        sl =
+            entry + 12;
+
+    }
+    else{
+
+        tp1 =
+            entry;
+
+        tp2 =
+            entry;
+
+        tp3 =
+            entry;
+
+        sl =
+            entry;
+
+    }
+
+
+    document.getElementById(
+        "entry"
+    ).innerText =
+        entry.toFixed(2);
+
+
+    document.getElementById(
+        "tp1"
+    ).innerText =
+        tp1.toFixed(2);
+
+
+    document.getElementById(
+        "tp2"
+    ).innerText =
+        tp2.toFixed(2);
+
+
+    document.getElementById(
+        "tp3"
+    ).innerText =
+        tp3.toFixed(2);
+
+
+    document.getElementById(
+        "sl"
+    ).innerText =
+        sl.toFixed(2);
+
+
+    const risk =
+        Math.abs(
+            entry - sl
+        );
+
+
+    const reward =
+        Math.abs(
+            tp2 - entry
+        );
+
+
+    const rr =
+        risk > 0
+        ? reward / risk
+        : 0;
+
+
+    document.getElementById(
+        "rr"
+    ).innerText =
+        "1 : " +
+        rr.toFixed(2);
+
+
+    drawChart();
+
+}
+
+
+/* =========================================================
+   UPDATE AI RESULTS
+========================================================= */
+
+function updateAIResults(
+    consensus
+){
+
+    let chatgpt =
+        consensus === "BUY"
+        ? "BUY"
+        : "WAIT";
+
+
+    let gemini =
+        consensus === "BUY"
+        ? "BUY"
+        : "WAIT";
+
+
+    let deepseek =
+        Math.random() > .5
+        ? "BUY"
+        : "WAIT";
+
+
+    setAISignal(
+        "chatgptSignal",
+        chatgpt
+    );
+
+
+    setAISignal(
+        "geminiSignal",
+        gemini
+    );
+
+
+    setAISignal(
+        "deepseekSignal",
+        deepseek
+    );
+
+
+    const c1 =
+        chatgpt === "BUY"
+        ? 82
+        : 64;
+
+
+    const c2 =
+        gemini === "BUY"
+        ? 76
+        : 61;
+
+
+    const c3 =
+        deepseek === "BUY"
+        ? 69
+        : 61;
+
+
+    document.getElementById(
+        "chatgptConfidence"
+    ).innerText =
+        c1 + "%";
+
+
+    document.getElementById(
+        "geminiConfidence"
+    ).innerText =
+        c2 + "%";
+
+
+    document.getElementById(
+        "deepseekConfidence"
+    ).innerText =
+        c3 + "%";
+
+
+    document.getElementById(
+        "chatgptBar"
+    ).style.width =
+        c1 + "%";
+
+
+    document.getElementById(
+        "geminiBar"
+    ).style.width =
+        c2 + "%";
+
+
+    document.getElementById(
+        "deepseekBar"
+    ).style.width =
+        c3 + "%";
+
+}
+
+
+/* =========================================================
+   AI SIGNAL STYLE
+========================================================= */
+
+function setAISignal(
+    id,
+    signal
+){
+
+    const el =
+        document.getElementById(
+            id
+        );
+
+
+    el.className =
+        "ai-signal " +
+        (
+            signal === "BUY"
+            ? "buy"
+            : signal === "SELL"
+            ? "sell"
+            : "wait"
+        );
+
+
+    el.innerText =
+        signal;
+
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+function sendChat(){
+
+    const input =
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text)
+        return;
+
+
+    addUserMessage(
+        text
+    );
+
+
+    input.value =
+        "";
+
+
+    setTimeout(
+        () => {
+
+            generateChatResponse(
+                text
+            );
+
+        },
+        600
+    );
+
+}
+
+
+/* =========================================================
+   CHAT RESPONSE
+========================================================= */
+
+function generateChatResponse(
+    question
+){
+
+    const q =
+        question.toLowerCase();
+
+
+    let response;
+
+
+    if(
+        q.includes("buy") ||
+        q.includes("sell")
+    ){
+
+        response =
+            "Current prototype consensus is "
+            +
+            "<b>"
+            +
+            document.getElementById(
+                "signal"
+            ).innerText
+            +
+            "</b>."
+            +
+            "<br><br>"
+            +
+            "Entry: "
+            +
+            document.getElementById(
+                "entry"
+            ).innerText
+            +
+            "<br>"
+            +
+            "TP1: "
+            +
+            document.getElementById(
+                "tp1"
+            ).innerText
+            +
+            "<br>"
+            +
+            "TP2: "
+            +
+            document.getElementById(
+                "tp2"
+            ).innerText
+            +
+            "<br>"
+            +
+            "TP3: "
+            +
+            document.getElementById(
+                "tp3"
+            ).innerText
+            +
+            "<br>"
+            +
+            "SL: "
+            +
+            document.getElementById(
+                "sl"
+            ).innerText
+            +
+            "<br><br>"
+            +
+            "This prototype uses simulated data.";
+
+    }
+
+
+    else if(
+        q.includes("tp") ||
+        q.includes("target")
+    ){
+
+        response =
+            "Current targets:"
+            +
+            "<br><br>"
+            +
+            "TP1 → "
+            +
+            document.getElementById(
+                "tp1"
+            ).innerText
+            +
+            "<br>"
+            +
+            "TP2 → "
+            +
+            document.getElementById(
+                "tp2"
+            ).innerText
+            +
+            "<br>"
+            +
+            "TP3 → "
+            +
+            document.getElementById(
+                "tp3"
+            ).innerText;
+
+    }
+
+
+    else if(
+        q.includes("lot") ||
+        q.includes("position")
+    ){
+
+        response =
+            "Use the Position / Lot Calculator."
+            +
+            "<br><br>"
+            +
+            "Lot size should be based on:"
+            +
+            "<br>• Account balance"
+            +
+            "<br>• Risk %"
+            +
+            "<br>• SL distance"
+            +
+            "<br>• Broker contract specification.";
+
+    }
+
+
+    else if(
+        q.includes("time") ||
+        q.includes("short") ||
+        q.includes("long")
+    ){
+
+        response =
+            "Current mode: <b>"
+            +
+            tradingStyle
+            +
+            "</b>"
+            +
+            "<br>"
+            +
+            "Primary timeframe: <b>"
+            +
+            currentTF
+            +
+            "</b>.";
+
+    }
+
+
+    else if(
+        q.includes("chart") ||
+        q.includes("candle")
+    ){
+
+        response =
+            "The chart is currently showing "
+            +
+            "<b>"
+            +
+            currentTF
+            +
+            "</b>"
+            +
+            " candles for XAU/USD."
+            +
+            "<br><br>"
+            +
+            "Use the timeframe buttons above "
+            +
+            "to change the analysis period.";
+
+    }
+
+
+    else{
+
+        response =
+            "I can analyze XAU/USD using "
+            +
+            "<b>"
+            +
+            currentTF
+            +
+            "</b>"
+            +
+            " and "
+            +
+            "<b>"
+            +
+            tradingStyle
+            +
+            "</b>"
+            +
+            " mode."
+            +
+            "<br><br>"
+            +
+            "Try asking: "
+            +
+            "\"Should I BUY now?\"";
+
+    }
+
+
+    addAIMessage(
+        response
+    );
+
+}
+
+
+/* =========================================================
+   ADD CHAT
+========================================================= */
+
+function addUserMessage(
+    text
+){
+
+    const chat =
+        document.getElementById(
+            "chat"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "message user-message";
+
+
+    div.innerText =
+        text;
+
+
+    chat.appendChild(
+        div
+    );
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+}
+
+
+function addAIMessage(
+    html
+){
+
+    const chat =
+        document.getElementById(
+            "chat"
+        );
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "message ai-message";
+
+
+    div.innerHTML =
+        "🤖 <b>XAU AI 3</b>"
+        +
+        "<br><br>"
+        +
+        html;
+
+
+    chat.appendChild(
+        div
+    );
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+}
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+document.getElementById(
+    "chatInput"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            sendChat();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE CROSSHAIR
+========================================================= */
+
+const chartContainer =
+    document.getElementById(
+        "chartContainer"
+    );
+
+
+chartContainer.addEventListener(
+    "mousemove",
+    function(event){
+
+        const rect =
+            chartContainer
+            .getBoundingClientRect();
+
+
+        const x =
+            event.clientX -
+            rect.left;
+
+
+        const y =
+            event.clientY -
+            rect.top;
+
+
+        const crossX =
+            document.getElementById(
+                "crossX"
+            );
+
+
+        const crossY =
+            document.getElementById(
+                "crossY"
+            );
+
+
+        crossX.style.top =
+            y + "px";
+
+
+        crossY.style.left =
+            x + "px";
+
+
+        crossX.style.display =
+            "block";
+
+
+        crossY.style.display =
+            "block";
+
+    }
+);
+
+
+chartContainer.addEventListener(
+    "mouseleave",
+    function(){
+
+        document.getElementById(
+            "crossX"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "crossY"
+        ).style.display =
+            "none";
+
+    }
+);
+
+</script>
+
+</body>
+</html>
