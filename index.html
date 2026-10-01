@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -10,14 +9,14 @@
                maximum-scale=1.0,
                user-scalable=no">
 
-<meta name="theme-color" content="#080c14">
+<meta name="theme-color" content="#0b0f16">
 
-<title>XAU AI 3</title>
+<title>XAU AI 3 — TradingView Style</title>
 
 <style>
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
 *{
@@ -26,13 +25,14 @@
     padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    background:#070a10;
-    color:#f5f7fa;
+    background:#070a0f;
+    color:#e7ebf2;
     font-family:
         Inter,
         -apple-system,
@@ -43,8 +43,7 @@ body{
 }
 
 button,
-input,
-select{
+input{
     font:inherit;
 }
 
@@ -52,533 +51,513 @@ button{
     cursor:pointer;
 }
 
+
+/* =========================================================
+   APP
+========================================================= */
+
 .app{
     width:100%;
-    max-width:1250px;
+    max-width:1400px;
     min-height:100vh;
     margin:auto;
-    background:#0b1018;
+    background:#0b0f16;
 }
 
 
 /* =========================================================
-   HEADER
+   TOP HEADER
 ========================================================= */
 
-.header{
+.topbar{
 
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    height:62px;
-
-    padding:
-        0 18px;
+    height:58px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    background:
-        rgba(8,12,20,.96);
+    padding:
+        0 14px;
+
+    background:#0b0f16;
 
     border-bottom:
-        1px solid #202a39;
+        1px solid #202733;
 
-    backdrop-filter:
-        blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.logo{
+.brand{
 
     display:flex;
     align-items:center;
     gap:8px;
 
-    font-size:19px;
+    font-size:17px;
     font-weight:900;
 }
 
-.logo-gold{
+.gold{
     color:#f5c542;
-}
-
-.logo-small{
-    color:#8b96a8;
-    font-size:11px;
-    font-weight:600;
 }
 
 .live{
 
     display:flex;
     align-items:center;
-    gap:7px;
+    gap:6px;
 
-    color:#55e18b;
-
-    font-size:11px;
-    font-weight:800;
-}
-
-.live-dot{
-
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#39d477;
-
-    box-shadow:
-        0 0 12px #39d477;
-}
-
-
-/* =========================================================
-   PRICE HEADER
-========================================================= */
-
-.price-header{
-
-    padding:18px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #0b111b
-        );
-
-    border-bottom:
-        1px solid #202a39;
-}
-
-.symbol-title{
-    font-size:12px;
-    color:#8994a6;
-}
-
-.main-price{
-
-    margin-top:3px;
-
-    font-size:31px;
-    font-weight:900;
-
-    letter-spacing:-1px;
-}
-
-.price-change{
-
-    margin-top:4px;
-
-    color:#45dc83;
-
-    font-size:12px;
-    font-weight:700;
-}
-
-.market-open{
-    text-align:right;
-}
-
-.market-open small{
-    color:#737f91;
-}
-
-.market-open strong{
-    display:block;
-    margin-top:5px;
-    color:#48df84;
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.content{
-    padding:14px;
-}
-
-.section-title{
-
-    margin:
-        10px 0 8px;
-
-    color:#8d98a9;
-
-    font-size:11px;
-    font-weight:800;
-
-    letter-spacing:.8px;
-
-    text-transform:uppercase;
-}
-
-
-/* =========================================================
-   CHART CARD
-========================================================= */
-
-.chart-card{
-
-    background:#0e141e;
-
-    border:
-        1px solid #263143;
-
-    border-radius:16px;
-
-    padding:12px;
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.18);
-}
-
-.chart-header{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:10px;
-}
-
-.chart-symbol{
-
-    font-size:15px;
-    font-weight:900;
-}
-
-.chart-symbol span{
-
-    margin-left:6px;
-
-    color:#7e899b;
-
-    font-size:11px;
-}
-
-.chart-live-price{
-
-    color:#47dc82;
-
-    font-size:15px;
-    font-weight:900;
-}
-
-
-/* =========================================================
-   TIMEFRAME BUTTONS
-========================================================= */
-
-.timeframes{
-
-    display:flex;
-
-    gap:5px;
-
-    overflow-x:auto;
-
-    padding-bottom:9px;
-
-    scrollbar-width:none;
-}
-
-.timeframes::-webkit-scrollbar{
-    display:none;
-}
-
-.tf{
-
-    flex:
-        0 0 auto;
-
-    padding:
-        7px 11px;
-
-    border:
-        1px solid #293446;
-
-    border-radius:7px;
-
-    background:#141b28;
-
-    color:#8792a4;
+    color:#42d982;
 
     font-size:10px;
     font-weight:800;
 }
 
-.tf.active{
+.live-dot{
 
-    background:#f5c542;
+    width:7px;
+    height:7px;
 
-    color:#101010;
+    border-radius:50%;
 
-    border-color:#f5c542;
+    background:#42d982;
+
+    box-shadow:
+        0 0 10px #42d982;
 }
 
 
 /* =========================================================
-   CHART
+   SYMBOL BAR
 ========================================================= */
 
-.chart-container{
+.symbolbar{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    min-height:50px;
+
+    padding:
+        7px 12px;
+
+    background:#0d121a;
+
+    border-bottom:
+        1px solid #202733;
+}
+
+.symbol-left{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+}
+
+.symbol{
+
+    font-size:15px;
+    font-weight:900;
+}
+
+.symbol-desc{
+
+    color:#707b8c;
+    font-size:10px;
+}
+
+.price{
+
+    color:#48dd83;
+
+    font-size:15px;
+    font-weight:900;
+}
+
+.price-change{
+
+    margin-left:5px;
+
+    color:#48dd83;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   TIMEFRAME BAR
+========================================================= */
+
+.toolbar{
+
+    display:flex;
+    align-items:center;
+
+    gap:4px;
+
+    overflow-x:auto;
+
+    padding:
+        7px 10px;
+
+    background:#0b1017;
+
+    border-bottom:
+        1px solid #202733;
+
+    scrollbar-width:none;
+}
+
+.toolbar::-webkit-scrollbar{
+    display:none;
+}
+
+.tool-btn{
+
+    flex:
+        0 0 auto;
+
+    min-width:38px;
+
+    padding:
+        6px 9px;
+
+    border:
+        1px solid #293343;
+
+    border-radius:5px;
+
+    background:#111721;
+
+    color:#8490a2;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+.tool-btn:hover{
+    border-color:#667386;
+}
+
+.tool-btn.active{
+
+    color:#f5c542;
+
+    border-color:#f5c542;
+
+    background:#171b22;
+}
+
+
+/* =========================================================
+   CHART AREA
+========================================================= */
+
+.chart-wrapper{
 
     position:relative;
 
     width:100%;
 
-    height:430px;
+    height:570px;
+
+    background:#090d13;
 
     overflow:hidden;
 
-    border:
-        1px solid #202a39;
-
-    border-radius:10px;
-
-    background:
-        #090e16;
+    border-bottom:
+        1px solid #202733;
 }
 
-#candleChart{
+#chart{
+
+    position:absolute;
+
+    left:0;
+    top:0;
 
     width:100%;
     height:100%;
 
     display:block;
-}
 
+    touch-action:none;
 
-/* chart crosshair */
-
-.crosshair-x,
-.crosshair-y{
-
-    position:absolute;
-
-    pointer-events:none;
-
-    display:none;
-
-    z-index:5;
-}
-
-.crosshair-x{
-
-    left:0;
-    right:0;
-
-    border-top:
-        1px dashed #536174;
-}
-
-.crosshair-y{
-
-    top:0;
-    bottom:0;
-
-    border-left:
-        1px dashed #536174;
-}
-
-
-/* price label */
-
-.current-price-line{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    border-top:
-        1px dashed #47dc82;
-
-    pointer-events:none;
-
-    z-index:4;
-}
-
-.current-price-label{
-
-    position:absolute;
-
-    right:0;
-
-    top:-10px;
-
-    padding:
-        3px 6px;
-
-    border-radius:4px;
-
-    background:#47dc82;
-
-    color:#06130a;
-
-    font-size:9px;
-    font-weight:900;
-}
-
-
-/* trade lines */
-
-.level-line{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    border-top:
-        1px dashed;
-
-    pointer-events:none;
-
-    z-index:3;
-}
-
-.level-label{
-
-    position:absolute;
-
-    right:0;
-
-    top:-10px;
-
-    padding:
-        3px 6px;
-
-    border-radius:4px;
-
-    font-size:8px;
-    font-weight:900;
-}
-
-.entry-line{
-    border-color:#f5c542;
-}
-
-.entry-label{
-    background:#f5c542;
-    color:#111;
-}
-
-.tp-line{
-    border-color:#42d77d;
-}
-
-.tp-label{
-    background:#42d77d;
-    color:#06130a;
-}
-
-.sl-line{
-    border-color:#ff5c70;
-}
-
-.sl-label{
-    background:#ff5c70;
-    color:#160508;
+    cursor:crosshair;
 }
 
 
 /* =========================================================
-   CHART INFO
+   CHART UI
 ========================================================= */
 
-.ohlc{
+.chart-tools{
 
-    display:grid;
+    position:absolute;
 
-    grid-template-columns:
-        repeat(4,1fr);
+    top:10px;
+    left:10px;
 
-    gap:6px;
-
-    margin-top:9px;
-}
-
-.ohlc-item{
-
-    padding:8px;
-
-    border-radius:8px;
-
-    background:#141b27;
-
-    border:
-        1px solid #222c3c;
-}
-
-.ohlc-item span{
-
-    display:block;
-
-    color:#758195;
-
-    font-size:9px;
-}
-
-.ohlc-item strong{
-
-    display:block;
-
-    margin-top:3px;
-
-    font-size:11px;
-}
-
-
-/* =========================================================
-   DECISION
-========================================================= */
-
-.decision{
-
-    padding:17px;
-
-    border:
-        1px solid #293446;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111927,
-            #0d131d
-        );
-}
-
-.decision-top{
+    z-index:20;
 
     display:flex;
 
-    justify-content:space-between;
+    flex-direction:column;
 
-    align-items:center;
+    gap:4px;
 }
 
-.signal{
+.chart-tool{
 
-    font-size:29px;
+    width:31px;
+    height:31px;
+
+    border:
+        1px solid #2a3444;
+
+    border-radius:5px;
+
+    background:
+        rgba(12,17,25,.92);
+
+    color:#a3adbc;
+
+    font-size:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.chart-tool:hover{
+
+    color:#fff;
+
+    background:#171e29;
+}
+
+
+/* =========================================================
+   CHART LEGEND
+========================================================= */
+
+.chart-legend{
+
+    position:absolute;
+
+    top:10px;
+    left:52px;
+
+    z-index:20;
+
+    padding:6px 8px;
+
+    background:
+        rgba(10,14,21,.88);
+
+    border:
+        1px solid #252f3e;
+
+    border-radius:5px;
+
+    font-size:10px;
+
+    color:#8792a3;
+}
+
+.chart-legend b{
+    color:#e9edf4;
+}
+
+
+/* =========================================================
+   AI SETUP BADGE
+========================================================= */
+
+.setup-badge{
+
+    position:absolute;
+
+    top:48px;
+    left:52px;
+
+    z-index:20;
+
+    padding:
+        8px 10px;
+
+    border-radius:7px;
+
+    background:
+        rgba(10,15,22,.93);
+
+    border:
+        1px solid #2b3545;
+
+    font-size:10px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.25);
+}
+
+.setup-title{
+
+    font-weight:900;
+
+    color:#42dc83;
+}
+
+.setup-title.sell{
+    color:#ff5c70;
+}
+
+.setup-info{
+
+    margin-top:3px;
+
+    color:#8b96a7;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+.zoom-box{
+
+    position:absolute;
+
+    right:65px;
+    bottom:30px;
+
+    z-index:20;
+
+    display:flex;
+
+    gap:4px;
+}
+
+.zoom-btn{
+
+    width:32px;
+    height:29px;
+
+    border:
+        1px solid #293343;
+
+    border-radius:5px;
+
+    background:
+        rgba(12,17,25,.93);
+
+    color:#aeb7c5;
+
+    font-weight:900;
+}
+
+.zoom-btn:hover{
+    color:#fff;
+}
+
+
+/* =========================================================
+   PRICE SCALE
+========================================================= */
+
+.price-scale{
+
+    position:absolute;
+
+    right:0;
+    top:0;
+    bottom:28px;
+
+    width:62px;
+
+    background:
+        rgba(8,12,18,.86);
+
+    border-left:
+        1px solid #202936;
+
+    pointer-events:none;
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   CURRENT PRICE
+========================================================= */
+
+.current-price{
+
+    position:absolute;
+
+    right:0;
+
+    z-index:30;
+
+    padding:
+        4px 6px;
+
+    background:#42dc83;
+
+    color:#06130a;
+
+    font-size:9px;
+    font-weight:900;
+
+    border-radius:3px 0 0 3px;
+}
+
+
+/* =========================================================
+   SIGNAL BOX
+========================================================= */
+
+.signal-box{
+
+    position:absolute;
+
+    right:70px;
+    top:10px;
+
+    z-index:30;
+
+    min-width:120px;
+
+    padding:
+        8px 10px;
+
+    background:
+        rgba(10,15,22,.93);
+
+    border:
+        1px solid #2b3545;
+
+    border-radius:7px;
+
+    text-align:right;
+}
+
+.signal-box .signal{
+
+    font-size:16px;
+
     font-weight:950;
 }
 
 .buy{
-    color:#45dc83;
+    color:#42dc83;
 }
 
 .sell{
@@ -589,105 +568,160 @@ button{
     color:#f5c542;
 }
 
-.confidence{
-    text-align:right;
-}
-
-.confidence strong{
+.signal-box small{
 
     display:block;
 
-    font-size:23px;
-}
-
-.confidence span{
+    margin-top:2px;
 
     color:#7d899a;
-
-    font-size:10px;
-}
-
-.trade-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:7px;
-
-    margin-top:17px;
-}
-
-.trade-box{
-
-    padding:10px;
-
-    border-radius:9px;
-
-    background:#151e2b;
-
-    border:
-        1px solid #222e40;
-}
-
-.trade-box span{
-
-    display:block;
-
-    color:#788497;
 
     font-size:9px;
 }
 
-.trade-box strong{
+
+/* =========================================================
+   BOTTOM CHART INFO
+========================================================= */
+
+.chart-bottom{
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+    right:62px;
+
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-around;
+
+    background:
+        #0b1017;
+
+    border-top:
+        1px solid #202936;
+
+    color:#697587;
+
+    font-size:9px;
+
+    pointer-events:none;
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.content{
+    padding:12px;
+}
+
+.section-title{
+
+    margin:
+        11px 0 7px;
+
+    color:#788496;
+
+    font-size:10px;
+    font-weight:900;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   TRADE SETUP PANEL
+========================================================= */
+
+.setup-panel{
+
+    display:grid;
+
+    grid-template-columns:
+        1.1fr 1fr 1fr 1fr 1fr;
+
+    gap:7px;
+
+    padding:12px;
+
+    border:
+        1px solid #273244;
+
+    border-radius:12px;
+
+    background:
+        #101722;
+}
+
+.setup-main{
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#151e2a;
+
+    border:
+        1px solid #263142;
+}
+
+.setup-main span,
+.level span{
+
+    display:block;
+
+    color:#768294;
+
+    font-size:8px;
+}
+
+.setup-main strong{
 
     display:block;
 
     margin-top:4px;
 
-    font-size:13px;
+    font-size:20px;
 }
 
+.level{
 
-/* =========================================================
-   STYLE
-========================================================= */
+    padding:10px;
 
-.style-grid{
+    border-radius:8px;
 
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:8px;
-}
-
-.style-btn{
-
-    padding:12px;
+    background:#121a25;
 
     border:
-        1px solid #293447;
-
-    border-radius:9px;
-
-    background:#121925;
-
-    color:#8994a6;
-
-    font-size:11px;
-    font-weight:800;
+        1px solid #242f40;
 }
 
-.style-btn.active{
+.level strong{
 
-    color:#f5c542;
+    display:block;
 
-    border-color:#f5c542;
+    margin-top:4px;
 
-    background:#171c25;
+    font-size:12px;
+}
+
+.level.tp strong{
+    color:#42dc83;
+}
+
+.level.sl strong{
+    color:#ff5c70;
 }
 
 
@@ -702,129 +736,85 @@ button{
     grid-template-columns:
         repeat(3,1fr);
 
-    gap:9px;
+    gap:8px;
 }
 
 .ai-card{
 
-    padding:14px;
-
-    border:
-        1px solid #263143;
-
-    border-radius:14px;
+    padding:13px;
 
     background:#111823;
+
+    border:
+        1px solid #273243;
+
+    border-radius:12px;
 }
 
-.ai-header{
+.ai-name{
 
     display:flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:7px;
 
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
 }
 
 .ai-icon{
 
-    width:29px;
-    height:29px;
+    width:27px;
+    height:27px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    border-radius:8px;
+    border-radius:7px;
 
-    background:#1d2736;
+    background:#1d2634;
 }
 
-.ai-signal{
+.ai-result{
 
-    margin-top:13px;
+    margin-top:11px;
 
-    font-size:18px;
-    font-weight:900;
+    font-size:17px;
+    font-weight:950;
 }
 
 .ai-reason{
 
-    margin-top:7px;
+    margin-top:5px;
 
-    color:#778396;
+    color:#788598;
 
-    font-size:10px;
+    font-size:9px;
 
     line-height:1.5;
 }
 
-.conf-bar{
+.ai-bar{
 
-    height:5px;
+    height:4px;
 
-    margin-top:11px;
+    margin-top:9px;
+
+    border-radius:10px;
 
     overflow:hidden;
-
-    border-radius:20px;
 
     background:#202a38;
 }
 
-.conf-fill{
+.ai-bar div{
 
     height:100%;
 
-    border-radius:20px;
-
     background:#f5c542;
-}
-
-
-/* =========================================================
-   MARKET STRUCTURE
-========================================================= */
-
-.market-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:7px;
-}
-
-.market-box{
-
-    padding:11px;
-
-    border:
-        1px solid #252f40;
-
-    border-radius:9px;
-
-    background:#111823;
-}
-
-.market-box span{
-
-    color:#778397;
-
-    font-size:9px;
-}
-
-.market-box strong{
-
-    display:block;
-
-    margin-top:4px;
-
-    font-size:11px;
 }
 
 
@@ -834,14 +824,14 @@ button{
 
 .calculator{
 
-    padding:15px;
+    padding:13px;
 
     border:
-        1px solid #293446;
+        1px solid #273244;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    background:#111823;
+    background:#101722;
 }
 
 .calc-grid{
@@ -851,56 +841,51 @@ button{
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:8px;
+    gap:7px;
 }
 
-.input-group label{
+.calc-group label{
 
     display:block;
 
-    margin-bottom:5px;
+    margin-bottom:4px;
 
-    color:#7d899b;
+    color:#788598;
 
-    font-size:9px;
+    font-size:8px;
 }
 
-.input-group input{
+.calc-group input{
 
     width:100%;
 
-    padding:10px;
+    padding:9px;
 
     border:
-        1px solid #293447;
+        1px solid #293446;
 
-    border-radius:8px;
+    border-radius:7px;
 
     outline:none;
 
-    background:#090f17;
+    background:#090e15;
 
     color:#fff;
 
-    font-size:12px;
+    font-size:11px;
 }
 
-.input-group input:focus{
-
-    border-color:#f5c542;
-}
-
-.calculate-btn{
+.calc-button{
 
     width:100%;
 
-    margin-top:10px;
+    margin-top:8px;
 
-    padding:12px;
+    padding:11px;
 
     border:0;
 
-    border-radius:9px;
+    border-radius:8px;
 
     background:#f5c542;
 
@@ -908,76 +893,31 @@ button{
 
     font-weight:900;
 
-    font-size:11px;
+    font-size:10px;
 }
 
 .lot-result{
+
+    margin-top:8px;
+
+    padding:9px;
 
     display:flex;
 
     justify-content:space-between;
 
-    align-items:center;
+    background:#0a1017;
 
-    margin-top:9px;
-
-    padding:11px;
-
-    border-radius:8px;
-
-    background:#0a1018;
+    border-radius:7px;
 }
 
 .lot-result span{
-
-    color:#8290a4;
-
-    font-size:10px;
+    color:#788598;
+    font-size:9px;
 }
 
 .lot-result strong{
-
     color:#f5c542;
-
-    font-size:18px;
-}
-
-
-/* =========================================================
-   ANALYZE BUTTON
-========================================================= */
-
-.analyze-btn{
-
-    width:100%;
-
-    margin-top:12px;
-
-    padding:15px;
-
-    border:0;
-
-    border-radius:11px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f5c542,
-            #dcae26
-        );
-
-    color:#111;
-
-    font-weight:950;
-
-    font-size:13px;
-}
-
-.analyze-btn:disabled{
-
-    opacity:.6;
-
-    cursor:not-allowed;
 }
 
 
@@ -987,38 +927,39 @@ button{
 
 .chat{
 
-    height:360px;
-
-    padding:12px;
+    height:310px;
 
     overflow-y:auto;
 
+    padding:11px;
+
     border:
-        1px solid #273143;
+        1px solid #273244;
 
-    border-radius:14px;
+    border-radius:12px;
 
-    background:#080d14;
+    background:#080d13;
 }
 
 .message{
 
-    max-width:86%;
+    max-width:85%;
 
-    margin-bottom:10px;
+    padding:
+        10px 12px;
 
-    padding:11px 13px;
+    margin-bottom:8px;
 
-    border-radius:13px;
+    border-radius:12px;
 
-    font-size:12px;
+    font-size:11px;
 
     line-height:1.55;
 }
 
 .ai-message{
 
-    background:#151e2b;
+    background:#151e2a;
 
     border-bottom-left-radius:3px;
 }
@@ -1034,49 +975,79 @@ button{
     border-bottom-right-radius:3px;
 }
 
-.chat-input-row{
+.chat-row{
 
     display:flex;
 
-    gap:7px;
+    gap:6px;
 
-    margin-top:8px;
+    margin-top:7px;
 }
 
 .chat-input{
 
     flex:1;
 
-    padding:12px;
+    padding:11px;
 
     border:
-        1px solid #293447;
+        1px solid #293446;
 
-    border-radius:9px;
+    border-radius:8px;
 
-    outline:none;
-
-    background:#0b111a;
+    background:#0b1119;
 
     color:#fff;
 
-    font-size:12px;
+    outline:none;
+
+    font-size:11px;
 }
 
-.send-btn{
+.send{
 
-    width:48px;
+    width:45px;
 
     border:0;
 
-    border-radius:9px;
+    border-radius:8px;
 
     background:#f5c542;
 
     color:#111;
 
-    font-size:17px;
     font-weight:900;
+}
+
+
+/* =========================================================
+   ANALYZE
+========================================================= */
+
+.analyze{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5c542,
+            #d9aa28
+        );
+
+    color:#111;
+
+    font-size:11px;
+
+    font-weight:950;
 }
 
 
@@ -1090,7 +1061,7 @@ button{
 
     text-align:center;
 
-    color:#566275;
+    color:#536072;
 
     font-size:9px;
 
@@ -1102,41 +1073,24 @@ button{
    MOBILE
 ========================================================= */
 
-@media(max-width:760px){
+@media(max-width:800px){
 
-    .header{
-        height:57px;
-        padding:0 13px;
+    .chart-wrapper{
+        height:470px;
     }
 
-    .content{
-        padding:10px;
-    }
-
-    .price-header{
-        padding:14px;
-    }
-
-    .main-price{
-        font-size:26px;
-    }
-
-    .chart-container{
-        height:340px;
-    }
-
-    .trade-grid{
+    .setup-panel{
         grid-template-columns:
             repeat(2,1fr);
+    }
+
+    .setup-main{
+        grid-column:
+            1 / -1;
     }
 
     .ai-grid{
         grid-template-columns:1fr;
-    }
-
-    .market-grid{
-        grid-template-columns:
-            repeat(2,1fr);
     }
 
     .calc-grid{
@@ -1146,84 +1100,64 @@ button{
 
 }
 
-@media(max-width:420px){
+@media(max-width:500px){
 
-    .chart-container{
-        height:300px;
+    .symbol-desc{
+        display:none;
     }
 
-    .signal{
-        font-size:25px;
+    .chart-wrapper{
+        height:430px;
     }
 
-    .trade-grid{
-        gap:5px;
+    .signal-box{
+        right:67px;
+        top:45px;
     }
 
-    .trade-box{
-        padding:9px;
+    .chart-legend{
+        top:10px;
+        left:50px;
     }
 
-}
+    .setup-badge{
+        top:75px;
+        left:50px;
+    }
 
+    .setup-panel{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-/* =========================================================
-   LOADING
-========================================================= */
-
-.loading{
-
-    display:inline-block;
-
-    width:12px;
-    height:12px;
-
-    border:
-        2px solid #111;
-
-    border-top-color:
-        transparent;
-
-    border-radius:50%;
-
-    animation:
-        spin .7s linear infinite;
-}
-
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
+    .calc-grid{
+        grid-template-columns:
+            1fr 1fr;
     }
 
 }
 
 </style>
-
 </head>
 
-<body>
 
+<body>
 
 <div class="app">
 
 
-<!-- ======================================================
+<!-- =====================================================
      HEADER
-======================================================= -->
+====================================================== -->
 
-<header class="header">
+<header class="topbar">
 
-    <div class="logo">
+    <div class="brand">
 
         🥇
 
-        <span class="logo-gold">
+        <span class="gold">
             XAU AI 3
-        </span>
-
-        <span class="logo-small">
-            MULTI-AI
         </span>
 
     </div>
@@ -1232,262 +1166,375 @@ button{
 
         <span class="live-dot"></span>
 
-        LIVE
+        LIVE MARKET
 
     </div>
 
 </header>
 
 
-<!-- ======================================================
-     PRICE HEADER
-======================================================= -->
+<!-- =====================================================
+     SYMBOL
+====================================================== -->
 
-<section class="price-header">
+<section class="symbolbar">
 
-    <div>
+    <div class="symbol-left">
 
-        <div class="symbol-title">
-            GOLD / US DOLLAR
-        </div>
+        <div>
 
-        <div class="main-price"
-             id="mainPrice">
+            <div class="symbol">
+                XAU/USD
+            </div>
 
-            $4,000.00
-
-        </div>
-
-        <div class="price-change"
-             id="priceChange">
-
-            +0.00%
+            <div class="symbol-desc">
+                GOLD / US DOLLAR
+            </div>
 
         </div>
 
     </div>
 
 
-    <div class="market-open">
+    <div>
 
-        <small>
-            Market
-        </small>
+        <span
+            class="price"
+            id="topPrice">
 
-        <strong>
-            ● OPEN
-        </strong>
+            4000.00
+
+        </span>
+
+        <span
+            class="price-change"
+            id="topChange">
+
+            +0.00%
+
+        </span>
 
     </div>
 
 </section>
 
+
+<!-- =====================================================
+     TOOLBAR
+====================================================== -->
+
+<div class="toolbar">
+
+    <button
+        class="tool-btn"
+        onclick="setTF(this,'M1')">
+
+        M1
+
+    </button>
+
+    <button
+        class="tool-btn active"
+        onclick="setTF(this,'M5')">
+
+        M5
+
+    </button>
+
+    <button
+        class="tool-btn"
+        onclick="setTF(this,'M15')">
+
+        M15
+
+    </button>
+
+    <button
+        class="tool-btn"
+        onclick="setTF(this,'H1')">
+
+        H1
+
+    </button>
+
+    <button
+        class="tool-btn"
+        onclick="setTF(this,'H4')">
+
+        H4
+
+    </button>
+
+    <button
+        class="tool-btn"
+        onclick="setTF(this,'D1')">
+
+        D1
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     CHART
+====================================================== -->
+
+<section class="chart-wrapper"
+         id="chartWrapper">
+
+
+    <canvas id="chart"></canvas>
+
+
+    <!-- LEFT TOOLS -->
+
+    <div class="chart-tools">
+
+        <button
+            class="chart-tool"
+            onclick="zoomIn()"
+            title="Zoom In">
+
+            +
+
+        </button>
+
+        <button
+            class="chart-tool"
+            onclick="zoomOut()"
+            title="Zoom Out">
+
+            −
+
+        </button>
+
+        <button
+            class="chart-tool"
+            onclick="resetChart()"
+            title="Reset">
+
+            ↻
+
+        </button>
+
+        <button
+            class="chart-tool"
+            onclick="toggleSetup()"
+            title="Toggle Setup">
+
+            🎯
+
+        </button>
+
+    </div>
+
+
+    <!-- LEGEND -->
+
+    <div class="chart-legend">
+
+        XAU/USD
+        <b id="legendTF">M5</b>
+
+    </div>
+
+
+    <!-- SETUP -->
+
+    <div class="setup-badge"
+         id="setupBadge">
+
+        <div
+            class="setup-title"
+            id="setupTitle">
+
+            🟢 BUY SETUP
+
+        </div>
+
+        <div
+            class="setup-info"
+            id="setupInfo">
+
+            Entry Zone:
+            3998.00–4001.00
+            <br>
+
+            TP:
+            4007 / 4014 / 4025
+
+        </div>
+
+    </div>
+
+
+    <!-- SIGNAL -->
+
+    <div class="signal-box">
+
+        <div
+            class="signal buy"
+            id="chartSignal">
+
+            BUY
+
+        </div>
+
+        <small>
+            AI Consensus
+            <span id="chartConfidence">
+                78%
+            </span>
+        </small>
+
+    </div>
+
+
+    <!-- CURRENT PRICE -->
+
+    <div
+        class="current-price"
+        id="currentPrice">
+
+        4000.00
+
+    </div>
+
+
+    <!-- PRICE SCALE -->
+
+    <div
+        class="price-scale"
+        id="priceScale">
+
+    </div>
+
+
+    <!-- ZOOM -->
+
+    <div class="zoom-box">
+
+        <button
+            class="zoom-btn"
+            onclick="zoomOut()">
+
+            −
+
+        </button>
+
+        <button
+            class="zoom-btn"
+            onclick="zoomIn()">
+
+            +
+
+        </button>
+
+    </div>
+
+
+    <!-- BOTTOM SCALE -->
+
+    <div class="chart-bottom">
+
+        <span>09:30</span>
+        <span>10:00</span>
+        <span>10:30</span>
+        <span>11:00</span>
+        <span>11:30</span>
+        <span>12:00</span>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     CONTENT
+====================================================== -->
 
 <main class="content">
 
 
-<!-- ======================================================
-     CHART
-======================================================= -->
+<!-- =====================================================
+     SETUP
+====================================================== -->
 
 <div class="section-title">
-    📊 XAU/USD Market Chart
+    🎯 AI Trading Setup
 </div>
 
 
-<section class="chart-card">
+<section class="setup-panel">
 
 
-    <div class="chart-header">
+    <div class="setup-main">
 
-        <div class="chart-symbol">
+        <span>
+            MARKET SETUP
+        </span>
 
-            XAU/USD
+        <strong
+            id="mainSetup"
+            class="buy">
 
-            <span id="chartTF">
-                M5
-            </span>
+            🟢 BUY
 
-        </div>
-
-        <div class="chart-live-price">
-
-            $
-            <span id="chartPrice">
-                4000.00
-            </span>
-
-        </div>
+        </strong>
 
     </div>
 
 
-    <div class="timeframes">
+    <div class="level">
 
-        <button class="tf"
-                onclick="changeTF(this,'M1')">
+        <span>
+            ENTRY
+        </span>
 
-            M1
-
-        </button>
-
-        <button class="tf active"
-                onclick="changeTF(this,'M5')">
-
-            M5
-
-        </button>
-
-        <button class="tf"
-                onclick="changeTF(this,'M15')">
-
-            M15
-
-        </button>
-
-        <button class="tf"
-                onclick="changeTF(this,'H1')">
-
-            H1
-
-        </button>
-
-        <button class="tf"
-                onclick="changeTF(this,'H4')">
-
-            H4
-
-        </button>
-
-        <button class="tf"
-                onclick="changeTF(this,'D1')">
-
-            D1
-
-        </button>
+        <strong id="entry">
+            4000.00
+        </strong>
 
     </div>
 
 
-    <div class="chart-container"
-         id="chartContainer">
+    <div class="level tp">
 
-        <canvas id="candleChart"></canvas>
+        <span>
+            TP1
+        </span>
 
-
-        <div class="crosshair-x"
-             id="crossX">
-        </div>
-
-        <div class="crosshair-y"
-             id="crossY">
-        </div>
-
-
-        <div class="current-price-line"
-             id="currentPriceLine">
-
-            <span class="current-price-label"
-                  id="currentPriceLabel">
-
-                4000.00
-
-            </span>
-
-        </div>
-
-
-        <div class="level-line entry-line"
-             id="entryLine">
-
-            <span class="level-label entry-label">
-                ENTRY
-            </span>
-
-        </div>
-
-
-        <div class="level-line tp-line"
-             id="tp1Line">
-
-            <span class="level-label tp-label">
-                TP1
-            </span>
-
-        </div>
-
-
-        <div class="level-line tp-line"
-             id="tp2Line">
-
-            <span class="level-label tp-label">
-                TP2
-            </span>
-
-        </div>
-
-
-        <div class="level-line sl-line"
-             id="slLine">
-
-            <span class="level-label sl-label">
-                SL
-            </span>
-
-        </div>
+        <strong id="tp1">
+            4007.00
+        </strong>
 
     </div>
 
 
-    <div class="ohlc">
+    <div class="level tp">
 
-        <div class="ohlc-item">
+        <span>
+            TP2
+        </span>
 
-            <span>
-                OPEN
-            </span>
+        <strong id="tp2">
+            4014.00
+        </strong>
 
-            <strong id="openPrice">
-                3996.20
-            </strong>
+    </div>
 
-        </div>
 
-        <div class="ohlc-item">
+    <div class="level sl">
 
-            <span>
-                HIGH
-            </span>
+        <span>
+            STOP LOSS
+        </span>
 
-            <strong id="highPrice">
-                4004.80
-            </strong>
-
-        </div>
-
-        <div class="ohlc-item">
-
-            <span>
-                LOW
-            </span>
-
-            <strong id="lowPrice">
-                3993.10
-            </strong>
-
-        </div>
-
-        <div class="ohlc-item">
-
-            <span>
-                CLOSE
-            </span>
-
-            <strong id="closePrice">
-                4000.00
-            </strong>
-
-        </div>
+        <strong id="sl">
+            3988.00
+        </strong>
 
     </div>
 
@@ -1495,192 +1542,21 @@ button{
 </section>
 
 
-<!-- ======================================================
-     AI DECISION
-======================================================= -->
+<!-- =====================================================
+     AI
+====================================================== -->
 
 <div class="section-title">
-    🎯 Multi-AI Decision
+    🤖 AI Council
 </div>
 
 
-<section class="decision">
+<section class="ai-grid">
 
-
-    <div class="decision-top">
-
-        <div>
-
-            <div class="signal buy"
-                 id="signal">
-
-                🟢 BUY
-
-            </div>
-
-            <div style="
-                margin-top:4px;
-                color:#7c8798;
-                font-size:10px;
-            ">
-
-                ChatGPT + Gemini + DeepSeek
-
-            </div>
-
-        </div>
-
-
-        <div class="confidence">
-
-            <strong id="confidence">
-                78%
-            </strong>
-
-            <span>
-                Confidence
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="trade-grid">
-
-
-        <div class="trade-box">
-
-            <span>
-                ENTRY
-            </span>
-
-            <strong id="entry">
-                4000.00
-            </strong>
-
-        </div>
-
-
-        <div class="trade-box">
-
-            <span>
-                TP1
-            </span>
-
-            <strong id="tp1">
-                4007.00
-            </strong>
-
-        </div>
-
-
-        <div class="trade-box">
-
-            <span>
-                TP2
-            </span>
-
-            <strong id="tp2">
-                4014.00
-            </strong>
-
-        </div>
-
-
-        <div class="trade-box">
-
-            <span>
-                TP3
-            </span>
-
-            <strong id="tp3">
-                4025.00
-            </strong>
-
-        </div>
-
-
-        <div class="trade-box">
-
-            <span>
-                STOP LOSS
-            </span>
-
-            <strong id="sl">
-                3988.00
-            </strong>
-
-        </div>
-
-
-        <div class="trade-box">
-
-            <span>
-                RISK / REWARD
-            </span>
-
-            <strong id="rr">
-                1 : 2.08
-            </strong>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- ======================================================
-     TRADING STYLE
-======================================================= -->
-
-<div class="section-title">
-    ⏱ Trading Style
-</div>
-
-
-<div class="style-grid">
-
-
-    <button class="style-btn active"
-            onclick="setTradingStyle(this,'SHORT TERM')">
-
-        ⚡ SHORT TERM
-
-    </button>
-
-
-    <button class="style-btn"
-            onclick="setTradingStyle(this,'LONG TERM')">
-
-        📈 LONG TERM
-
-    </button>
-
-
-</div>
-
-
-<!-- ======================================================
-     AI ANALYSIS
-======================================================= -->
-
-<div class="section-title">
-    🤖 AI Analysis
-</div>
-
-
-<div class="ai-grid">
-
-
-    <!-- CHATGPT -->
 
     <div class="ai-card">
 
-        <div class="ai-header">
+        <div class="ai-name">
 
             <div class="ai-icon">
                 🟢
@@ -1691,55 +1567,38 @@ button{
         </div>
 
 
-        <div class="ai-signal buy"
-             id="chatgptSignal">
+        <div
+            class="ai-result buy"
+            id="chatgpt">
 
             BUY
 
         </div>
 
 
-        <div class="ai-reason"
-             id="chatgptReason">
+        <div class="ai-reason">
 
-            M5/M15 structure is currently
-            bullish in this prototype.
+            Trend + price action
+            analysis.
 
         </div>
 
 
-        <div class="conf-bar">
+        <div class="ai-bar">
 
-            <div class="conf-fill"
-                 id="chatgptBar"
-                 style="width:82%">
-
+            <div
+                id="chatgptBar"
+                style="width:82%">
             </div>
-
-        </div>
-
-
-        <div style="
-            margin-top:5px;
-            color:#718095;
-            font-size:9px;
-        ">
-
-            Confidence:
-            <span id="chatgptConfidence">
-                82%
-            </span>
 
         </div>
 
     </div>
 
 
-    <!-- GEMINI -->
-
     <div class="ai-card">
 
-        <div class="ai-header">
+        <div class="ai-name">
 
             <div class="ai-icon">
                 🔵
@@ -1750,55 +1609,38 @@ button{
         </div>
 
 
-        <div class="ai-signal buy"
-             id="geminiSignal">
+        <div
+            class="ai-result buy"
+            id="gemini">
 
             BUY
 
         </div>
 
 
-        <div class="ai-reason"
-             id="geminiReason">
+        <div class="ai-reason">
 
-            Momentum remains positive,
-            but volatility needs monitoring.
+            Momentum + market
+            context.
 
         </div>
 
 
-        <div class="conf-bar">
+        <div class="ai-bar">
 
-            <div class="conf-fill"
-                 id="geminiBar"
-                 style="width:76%">
-
+            <div
+                id="geminiBar"
+                style="width:76%">
             </div>
-
-        </div>
-
-
-        <div style="
-            margin-top:5px;
-            color:#718095;
-            font-size:9px;
-        ">
-
-            Confidence:
-            <span id="geminiConfidence">
-                76%
-            </span>
 
         </div>
 
     </div>
 
 
-    <!-- DEEPSEEK -->
-
     <div class="ai-card">
 
-        <div class="ai-header">
+        <div class="ai-name">
 
             <div class="ai-icon">
                 🟣
@@ -1809,126 +1651,44 @@ button{
         </div>
 
 
-        <div class="ai-signal wait"
-             id="deepseekSignal">
+        <div
+            class="ai-result wait"
+            id="deepseek">
 
             WAIT
 
         </div>
 
 
-        <div class="ai-reason"
-             id="deepseekReason">
+        <div class="ai-reason">
 
-            Statistical confirmation is
-            not strong enough yet.
+            Statistical confirmation
+            and risk analysis.
 
         </div>
 
 
-        <div class="conf-bar">
+        <div class="ai-bar">
 
-            <div class="conf-fill"
-                 id="deepseekBar"
-                 style="width:61%">
-
+            <div
+                id="deepseekBar"
+                style="width:61%">
             </div>
 
         </div>
 
-
-        <div style="
-            margin-top:5px;
-            color:#718095;
-            font-size:9px;
-        ">
-
-            Confidence:
-            <span id="deepseekConfidence">
-                61%
-            </span>
-
-        </div>
-
     </div>
 
 
-</div>
+</section>
 
 
-<!-- ======================================================
-     MARKET STRUCTURE
-======================================================= -->
+<!-- =====================================================
+     LOT
+====================================================== -->
 
 <div class="section-title">
-    📈 Market Structure
-</div>
-
-
-<div class="market-grid">
-
-
-    <div class="market-box">
-
-        <span>
-            M5
-        </span>
-
-        <strong class="buy">
-            🟢 Bullish
-        </strong>
-
-    </div>
-
-
-    <div class="market-box">
-
-        <span>
-            M15
-        </span>
-
-        <strong class="buy">
-            🟢 Bullish
-        </strong>
-
-    </div>
-
-
-    <div class="market-box">
-
-        <span>
-            H1
-        </span>
-
-        <strong class="wait">
-            🟡 Neutral
-        </strong>
-
-    </div>
-
-
-    <div class="market-box">
-
-        <span>
-            H4
-        </span>
-
-        <strong class="sell">
-            🔴 Bearish
-        </strong>
-
-    </div>
-
-
-</div>
-
-
-<!-- ======================================================
-     LOT CALCULATOR
-======================================================= -->
-
-<div class="section-title">
-    💰 Position / Lot Calculator
+    💰 Risk & Lot Size
 </div>
 
 
@@ -1938,65 +1698,59 @@ button{
     <div class="calc-grid">
 
 
-        <div class="input-group">
+        <div class="calc-group">
 
             <label>
-                Balance ($)
+                BALANCE $
             </label>
 
             <input
                 id="balance"
                 type="number"
-                value="1000"
-                min="1"
-            >
+                value="1000">
 
         </div>
 
 
-        <div class="input-group">
+        <div class="calc-group">
 
             <label>
-                Risk (%)
+                RISK %
             </label>
 
             <input
                 id="risk"
                 type="number"
                 value="1"
-                min=".1"
-                step=".1"
-            >
+                step=".1">
 
         </div>
 
 
-        <div class="input-group">
+        <div class="calc-group">
 
             <label>
-                Entry
+                ENTRY
             </label>
 
             <input
                 id="calcEntry"
                 type="number"
-                value="4000"
-            >
+                value="4000">
 
         </div>
 
 
-        <div class="input-group">
+        <div class="calc-group">
 
             <label>
-                Stop Loss
+                SL
             </label>
 
             <input
                 id="calcSL"
                 type="number"
-                value="3988"
-            >
+                value="3988">
 
         </div>
 
@@ -2004,8 +1758,9 @@ button{
     </div>
 
 
-    <button class="calculate-btn"
-            onclick="calculateLot()">
+    <button
+        class="calc-button"
+        onclick="calculateLot()">
 
         CALCULATE LOT SIZE
 
@@ -2028,60 +1783,62 @@ button{
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
      ANALYZE
-======================================================= -->
+====================================================== -->
 
 <button
-    class="analyze-btn"
+    class="analyze"
     id="analyzeBtn"
-    onclick="runMultiAI()">
+    onclick="runAI()">
 
     🧠 RUN MULTI-AI ANALYSIS
 
 </button>
 
 
-<!-- ======================================================
+<!-- =====================================================
      CHAT
-======================================================= -->
+====================================================== -->
 
 <div class="section-title">
     💬 XAU AI Chat
 </div>
 
 
-<section class="chat"
-         id="chat">
+<section
+    class="chat"
+    id="chat">
 
 
     <div class="message ai-message">
 
-        👋 <b>XAU AI 3</b>
+        🤖 <b>XAU AI 3</b>
 
         <br><br>
 
-        I am your multi-AI XAU/USD
-        trading analysis assistant.
+        Welcome to XAU AI 3.
 
         <br><br>
 
-        You can ask:
+        The chart displays the AI trading
+        setup directly on the market.
 
+        <br><br>
+
+        🟢 BUY / 🔴 SELL
         <br>
-        • Should I BUY or SELL?
+        Entry Zone
         <br>
-        • Where is TP1 / TP2 / TP3?
+        TP1 / TP2 / TP3
         <br>
-        • Where should SL be?
+        SL
         <br>
-        • Short term or long term?
-        <br>
-        • What is the risk?
-        <br>
-        • Calculate lot size.
-        <br>
-        • Analyze M5 / M15 / H1.
+        Risk / Reward
+
+        <br><br>
+
+        You can also zoom and drag the chart.
 
     </div>
 
@@ -2089,17 +1846,16 @@ button{
 </section>
 
 
-<div class="chat-input-row">
+<div class="chat-row">
 
     <input
-        class="chat-input"
         id="chatInput"
+        class="chat-input"
         placeholder="Ask XAU AI..."
-        autocomplete="off"
-    >
+        autocomplete="off">
 
     <button
-        class="send-btn"
+        class="send"
         onclick="sendChat()">
 
         ➤
@@ -2109,22 +1865,14 @@ button{
 </div>
 
 
-<!-- ======================================================
-     FOOTER
-======================================================= -->
-
 <div class="footer">
 
-    XAU AI 3
+    XAU AI 3 — TradingView Style Prototype
+
     <br>
 
-    Multi-Agent Gold Trading Assistant
-
-    <br><br>
-
-    ⚠️ Prototype only.
-    Market prices and AI analysis are simulated.
-    Trading involves substantial risk.
+    ⚠️ Demo market data only.
+    Not financial advice.
 
 </div>
 
@@ -2137,81 +1885,90 @@ button{
 <script>
 
 /* =========================================================
-   GLOBAL VARIABLES
+   VARIABLES
 ========================================================= */
 
-let currentTF = "M5";
+const canvas =
+    document.getElementById("chart");
 
-let tradingStyle = "SHORT TERM";
+const ctx =
+    canvas.getContext("2d");
 
-let currentPrice = 4000;
+const wrapper =
+    document.getElementById(
+        "chartWrapper"
+    );
+
 
 let candles = [];
 
-let candleTimer;
+let timeframe = "M5";
 
-let canvas;
+let price = 4000;
 
-let ctx;
+let zoom = 1;
 
-let chartWidth;
+let offset = 0;
 
-let chartHeight;
+let dragging = false;
 
+let dragStartX = 0;
 
-/* =========================================================
-   INITIALIZATION
-========================================================= */
+let dragStartOffset = 0;
 
-window.addEventListener(
-    "load",
-    () => {
+let showSetup = true;
 
-        canvas =
-            document.getElementById(
-                "candleChart"
-            );
+let currentSignal = "BUY";
 
-        ctx =
-            canvas.getContext("2d");
+let setupEntry = 4000;
 
-        generateCandles();
+let setupTP1 = 4007;
 
-        resizeCanvas();
+let setupTP2 = 4014;
 
-        calculateLot();
+let setupTP3 = 4025;
 
-        startMarket();
+let setupSL = 3988;
 
-    }
-);
+let dpr = 1;
+
+let W = 0;
+
+let H = 0;
 
 
 /* =========================================================
    RESIZE
 ========================================================= */
 
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-
 function resizeCanvas(){
 
-    if(!canvas) return;
-
     const rect =
-        canvas.getBoundingClientRect();
+        wrapper.getBoundingClientRect();
 
-    const dpr =
+    dpr =
         window.devicePixelRatio || 1;
 
+    W =
+        rect.width;
+
+    H =
+        rect.height;
+
+
     canvas.width =
-        rect.width * dpr;
+        W * dpr;
 
     canvas.height =
-        rect.height * dpr;
+        H * dpr;
+
+
+    canvas.style.width =
+        W + "px";
+
+    canvas.style.height =
+        H + "px";
+
 
     ctx.setTransform(
         dpr,
@@ -2222,15 +1979,16 @@ function resizeCanvas(){
         0
     );
 
-    chartWidth =
-        rect.width;
 
-    chartHeight =
-        rect.height;
-
-    drawChart();
+    draw();
 
 }
+
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
 
 /* =========================================================
@@ -2241,61 +1999,58 @@ function generateCandles(){
 
     candles = [];
 
-    let price =
-        currentPrice - 35;
+    let p =
+        4000 - 70;
+
+
+    let volatility =
+        getVolatility();
 
 
     for(
         let i=0;
-        i<65;
+        i<160;
         i++
     ){
 
-        const open =
-            price;
-
-        const volatility =
-            currentTF === "M1"
-            ? 1.3
-            : currentTF === "M5"
-            ? 2.2
-            : currentTF === "M15"
-            ? 3.2
-            : currentTF === "H1"
-            ? 6
-            : currentTF === "H4"
-            ? 10
-            : 16;
+        let open =
+            p;
 
 
-        const move =
-            (
-                Math.random() - .47
-            ) * volatility;
+        let direction =
+            Math.random() > .47
+            ? 1
+            : -1;
 
 
-        const close =
+        let move =
+            direction *
+            Math.random() *
+            volatility;
+
+
+        let close =
             open + move;
 
 
-        const high =
+        let high =
             Math.max(
                 open,
                 close
             )
             +
-            Math.random()
-            * volatility;
+            Math.random() *
+            volatility;
 
 
-        const low =
+        let low =
             Math.min(
                 open,
                 close
             )
             -
-            Math.random()
-            * volatility;
+            Math.random() *
+            volatility;
 
 
         candles.push({
@@ -2308,13 +2063,13 @@ function generateCandles(){
         });
 
 
-        price =
+        p =
             close;
 
     }
 
 
-    currentPrice =
+    price =
         candles[
             candles.length - 1
         ].close;
@@ -2323,10 +2078,44 @@ function generateCandles(){
 
 
 /* =========================================================
-   DRAW CHART
+   VOLATILITY
 ========================================================= */
 
-function drawChart(){
+function getVolatility(){
+
+    switch(timeframe){
+
+        case "M1":
+            return 1.0;
+
+        case "M5":
+            return 2.2;
+
+        case "M15":
+            return 3.5;
+
+        case "H1":
+            return 6;
+
+        case "H4":
+            return 12;
+
+        case "D1":
+            return 20;
+
+        default:
+            return 2.2;
+
+    }
+
+}
+
+
+/* =========================================================
+   DRAW
+========================================================= */
+
+function draw(){
 
     if(
         !ctx ||
@@ -2339,190 +2128,38 @@ function drawChart(){
     ctx.clearRect(
         0,
         0,
-        chartWidth,
-        chartHeight
+        W,
+        H
     );
 
 
-    /* background */
+    drawBackground();
+
+    drawGrid();
+
+    drawCandles();
+
+    drawTradeSetup();
+
+    drawPriceScale();
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+function drawBackground(){
 
     ctx.fillStyle =
-        "#090e16";
+        "#090d13";
 
     ctx.fillRect(
         0,
         0,
-        chartWidth,
-        chartHeight
-    );
-
-
-    /* grid */
-
-    drawGrid();
-
-
-    /* price range */
-
-    const highs =
-        candles.map(
-            c => c.high
-        );
-
-    const lows =
-        candles.map(
-            c => c.low
-        );
-
-
-    const max =
-        Math.max(...highs)
-        + 2;
-
-    const min =
-        Math.min(...lows)
-        - 2;
-
-
-    const range =
-        max - min;
-
-
-    function priceY(price){
-
-        return (
-            chartHeight -
-            (
-                (price - min)
-                / range
-            )
-            *
-            (chartHeight - 20)
-        ) - 10;
-
-    }
-
-
-    const candleSpace =
-        chartWidth /
-        candles.length;
-
-
-    const bodyWidth =
-        Math.max(
-            2,
-            candleSpace * .55
-        );
-
-
-    candles.forEach(
-        (candle,index) => {
-
-
-            const x =
-                index *
-                candleSpace
-                +
-                candleSpace / 2;
-
-
-            const openY =
-                priceY(
-                    candle.open
-                );
-
-
-            const closeY =
-                priceY(
-                    candle.close
-                );
-
-
-            const highY =
-                priceY(
-                    candle.high
-                );
-
-
-            const lowY =
-                priceY(
-                    candle.low
-                );
-
-
-            const bullish =
-                candle.close
-                >=
-                candle.open;
-
-
-            const color =
-                bullish
-                ? "#42d77d"
-                : "#ff5c70";
-
-
-            /* wick */
-
-            ctx.beginPath();
-
-            ctx.moveTo(
-                x,
-                highY
-            );
-
-            ctx.lineTo(
-                x,
-                lowY
-            );
-
-            ctx.lineWidth = 1;
-
-            ctx.strokeStyle =
-                color;
-
-            ctx.stroke();
-
-
-            /* body */
-
-            const bodyTop =
-                Math.min(
-                    openY,
-                    closeY
-                );
-
-
-            const bodyHeight =
-                Math.max(
-                    2,
-                    Math.abs(
-                        closeY -
-                        openY
-                    )
-                );
-
-
-            ctx.fillStyle =
-                color;
-
-
-            ctx.fillRect(
-                x -
-                bodyWidth / 2,
-                bodyTop,
-                bodyWidth,
-                bodyHeight
-            );
-
-        }
-    );
-
-
-    updateChartLabels(
-        min,
-        max,
-        priceY
+        W,
+        H
     );
 
 }
@@ -2540,19 +2177,11 @@ function drawGrid(){
     ctx.lineWidth = 1;
 
 
-    const horizontal = 8;
-
     for(
-        let i=1;
-        i<horizontal;
-        i++
+        let y=30;
+        y<H-30;
+        y+=45
     ){
-
-        const y =
-            chartHeight /
-            horizontal *
-            i;
-
 
         ctx.beginPath();
 
@@ -2562,7 +2191,7 @@ function drawGrid(){
         );
 
         ctx.lineTo(
-            chartWidth,
+            W,
             y
         );
 
@@ -2571,19 +2200,11 @@ function drawGrid(){
     }
 
 
-    const vertical = 10;
-
     for(
-        let i=1;
-        i<vertical;
-        i++
+        let x=30;
+        x<W-60;
+        x+=75
     ){
-
-        const x =
-            chartWidth /
-            vertical *
-            i;
-
 
         ctx.beginPath();
 
@@ -2594,7 +2215,7 @@ function drawGrid(){
 
         ctx.lineTo(
             x,
-            chartHeight
+            H
         );
 
         ctx.stroke();
@@ -2605,52 +2226,803 @@ function drawGrid(){
 
 
 /* =========================================================
-   CHART LABELS
+   VISIBLE CANDLES
 ========================================================= */
 
-function updateChartLabels(
-    min,
-    max,
-    priceY
+function getVisible(){
+
+    const base =
+        75;
+
+
+    const count =
+        Math.max(
+            18,
+            Math.floor(
+                base / zoom
+            )
+        );
+
+
+    let end =
+        candles.length -
+        offset;
+
+
+    if(end < 1)
+        end = 1;
+
+
+    let start =
+        Math.max(
+            0,
+            end - count
+        );
+
+
+    return {
+        start,
+        end,
+        count:
+            end - start
+    };
+
+}
+
+
+/* =========================================================
+   PRICE RANGE
+========================================================= */
+
+function getRange(
+    start,
+    end
 ){
 
-    const last =
-        candles[
-            candles.length - 1
-        ];
+    let max =
+        -Infinity;
+
+    let min =
+        Infinity;
 
 
-    currentPrice =
-        last.close;
+    for(
+        let i=start;
+        i<end;
+        i++
+    ){
+
+        max =
+            Math.max(
+                max,
+                candles[i].high
+            );
+
+
+        min =
+            Math.min(
+                min,
+                candles[i].low
+            );
+
+    }
+
+
+    /* include setup levels */
+
+    if(showSetup){
+
+        max =
+            Math.max(
+                max,
+                setupTP3,
+                setupTP2,
+                setupTP1,
+                setupEntry
+            );
+
+
+        min =
+            Math.min(
+                min,
+                setupSL,
+                setupEntry
+            );
+
+    }
+
+
+    const padding =
+        (max-min) *
+        .10;
+
+
+    return {
+
+        max:
+            max + padding,
+
+        min:
+            min - padding
+
+    };
+
+}
+
+
+/* =========================================================
+   CANDLE DRAWING
+========================================================= */
+
+function drawCandles(){
+
+    const visible =
+        getVisible();
+
+
+    const range =
+        getRange(
+            visible.start,
+            visible.end
+        );
+
+
+    const max =
+        range.max;
+
+    const min =
+        range.min;
+
+
+    const priceToY =
+        p =>
+            20 +
+            (
+                max-p
+            )
+            /
+            (
+                max-min
+            )
+            *
+            (
+                H-50
+            );
+
+
+    const candleSpace =
+        (
+            W-65
+        )
+        /
+        visible.count;
+
+
+    const bodyWidth =
+        Math.max(
+            2,
+            candleSpace*.62
+        );
+
+
+    for(
+        let i=visible.start;
+        i<visible.end;
+        i++
+    ){
+
+        const c =
+            candles[i];
+
+
+        const index =
+            i-visible.start;
+
+
+        const x =
+            index *
+            candleSpace
+            +
+            candleSpace/2;
+
+
+        const openY =
+            priceToY(
+                c.open
+            );
+
+
+        const closeY =
+            priceToY(
+                c.close
+            );
+
+
+        const highY =
+            priceToY(
+                c.high
+            );
+
+
+        const lowY =
+            priceToY(
+                c.low
+            );
+
+
+        const bullish =
+            c.close >= c.open;
+
+
+        const color =
+            bullish
+            ? "#26c281"
+            : "#ef596d";
+
+
+        /* wick */
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            highY
+        );
+
+        ctx.lineTo(
+            x,
+            lowY
+        );
+
+        ctx.strokeStyle =
+            color;
+
+        ctx.lineWidth =
+            1;
+
+        ctx.stroke();
+
+
+        /* body */
+
+        ctx.fillStyle =
+            color;
+
+
+        ctx.fillRect(
+
+            x -
+            bodyWidth/2,
+
+            Math.min(
+                openY,
+                closeY
+            ),
+
+            bodyWidth,
+
+            Math.max(
+                1.5,
+                Math.abs(
+                    openY-closeY
+                )
+            )
+
+        );
+
+    }
+
+
+    drawSignalArrow(
+        priceToY,
+        candleSpace,
+        visible
+    );
+
+
+    updateCurrentPrice(
+        priceToY,
+        max,
+        min
+    );
+
+}
+
+
+/* =========================================================
+   SIGNAL ARROW
+========================================================= */
+
+function drawSignalArrow(
+    priceToY,
+    candleSpace,
+    visible
+){
+
+    if(!showSetup)
+        return;
+
+
+    const index =
+        candles.length - 5;
+
+
+    if(
+        index <
+        visible.start ||
+        index >=
+        visible.end
+    ){
+        return;
+    }
+
+
+    const c =
+        candles[index];
+
+
+    const x =
+        (
+            index -
+            visible.start
+        )
+        *
+        candleSpace
+        +
+        candleSpace/2;
+
+
+    const bullish =
+        currentSignal ===
+        "BUY";
+
+
+    const y =
+        bullish
+        ? priceToY(c.low)-20
+        : priceToY(c.high)+20;
+
+
+    ctx.fillStyle =
+        bullish
+        ? "#26c281"
+        : "#ef596d";
+
+
+    ctx.beginPath();
+
+
+    if(bullish){
+
+        ctx.moveTo(
+            x,
+            y-8
+        );
+
+        ctx.lineTo(
+            x-7,
+            y+4
+        );
+
+        ctx.lineTo(
+            x+7,
+            y+4
+        );
+
+    }
+    else{
+
+        ctx.moveTo(
+            x,
+            y+8
+        );
+
+        ctx.lineTo(
+            x-7,
+            y-4
+        );
+
+        ctx.lineTo(
+            x+7,
+            y-4
+        );
+
+    }
+
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.font =
+        "bold 9px Arial";
+
+    ctx.fillStyle =
+        bullish
+        ? "#26c281"
+        : "#ef596d";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillText(
+
+        bullish
+        ? "BUY SETUP"
+        : "SELL SETUP",
+
+        x,
+
+        bullish
+        ? y-12
+        : y+19
+
+    );
+
+}
+
+
+/* =========================================================
+   TRADE SETUP
+========================================================= */
+
+function drawTradeSetup(){
+
+    if(!showSetup)
+        return;
+
+
+    const visible =
+        getVisible();
+
+
+    const range =
+        getRange(
+            visible.start,
+            visible.end
+        );
+
+
+    const priceToY =
+        p =>
+            20 +
+            (
+                range.max-p
+            )
+            /
+            (
+                range.max-range.min
+            )
+            *
+            (
+                H-50
+            );
+
+
+    /*
+       Entry Zone
+    */
+
+    const zoneTop =
+        priceToY(
+            currentSignal ===
+            "BUY"
+            ? setupEntry + 2
+            : setupEntry + 2
+        );
+
+
+    const zoneBottom =
+        priceToY(
+            currentSignal ===
+            "BUY"
+            ? setupEntry - 2
+            : setupEntry - 2
+        );
+
+
+    ctx.fillStyle =
+        currentSignal ===
+        "BUY"
+        ? "rgba(38,194,129,.08)"
+        : "rgba(239,89,109,.08)";
+
+
+    ctx.fillRect(
+        0,
+        zoneTop,
+        W-62,
+        zoneBottom-zoneTop
+    );
+
+
+    /*
+       Horizontal levels
+    */
+
+    drawLevel(
+        priceToY,
+        setupEntry,
+        "#f5c542",
+        "ENTRY"
+    );
+
+
+    drawLevel(
+        priceToY,
+        setupTP1,
+        "#26c281",
+        "TP1"
+    );
+
+
+    drawLevel(
+        priceToY,
+        setupTP2,
+        "#26c281",
+        "TP2"
+    );
+
+
+    drawLevel(
+        priceToY,
+        setupTP3,
+        "#26c281",
+        "TP3"
+    );
+
+
+    drawLevel(
+        priceToY,
+        setupSL,
+        "#ef596d",
+        "SL"
+    );
+
+}
+
+
+/* =========================================================
+   LEVEL
+========================================================= */
+
+function drawLevel(
+    priceToY,
+    priceValue,
+    color,
+    label
+){
+
+    const y =
+        priceToY(
+            priceValue
+        );
+
+
+    ctx.beginPath();
+
+    ctx.setLineDash(
+        [6,5]
+    );
+
+    ctx.moveTo(
+        0,
+        y
+    );
+
+    ctx.lineTo(
+        W-62,
+        y
+    );
+
+    ctx.strokeStyle =
+        color;
+
+    ctx.lineWidth =
+        label === "ENTRY"
+        ? 1.5
+        : 1;
+
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+
+    /* label */
+
+    ctx.fillStyle =
+        color;
+
+
+    ctx.fillRect(
+        W-62,
+        y-9,
+        62,
+        18
+    );
+
+
+    ctx.fillStyle =
+        "#07100b";
+
+
+    ctx.font =
+        "bold 9px Arial";
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillText(
+        label +
+        " " +
+        priceValue.toFixed(2),
+
+        W-31,
+
+        y+3
+    );
+
+}
+
+
+/* =========================================================
+   PRICE SCALE
+========================================================= */
+
+function drawPriceScale(){
+
+    const visible =
+        getVisible();
+
+
+    const range =
+        getRange(
+            visible.start,
+            visible.end
+        );
+
+
+    const steps = 8;
+
+
+    const scale =
+        document.getElementById(
+            "priceScale"
+        );
+
+
+    scale.innerHTML =
+        "";
+
+
+    for(
+        let i=0;
+        i<=steps;
+        i++
+    ){
+
+        const p =
+            range.max -
+            (
+                range.max-range.min
+            )
+            *
+            (
+                i/steps
+            );
+
+
+        const el =
+            document.createElement(
+                "div"
+            );
+
+
+        el.style.position =
+            "absolute";
+
+
+        el.style.right =
+            "5px";
+
+
+        el.style.top =
+            (
+                15 +
+                (
+                    H-55
+                )
+                *
+                i/steps
+            )
+            + "px";
+
+
+        el.style.transform =
+            "translateY(-50%)";
+
+
+        el.style.color =
+            "#697587";
+
+
+        el.style.fontSize =
+            "9px";
+
+
+        el.innerText =
+            p.toFixed(2);
+
+
+        scale.appendChild(
+            el
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CURRENT PRICE
+========================================================= */
+
+function updateCurrentPrice(
+    priceToY,
+    max,
+    min
+){
+
+    const y =
+        priceToY(
+            price
+        );
+
+
+    const el =
+        document.getElementById(
+            "currentPrice"
+        );
+
+
+    el.style.top =
+        Math.max(
+            0,
+            Math.min(
+                H-20,
+                y-9
+            )
+        )
+        + "px";
+
+
+    el.innerText =
+        price.toFixed(2);
 
 
     document.getElementById(
-        "chartPrice"
+        "topPrice"
     ).innerText =
-        currentPrice.toFixed(2);
-
-
-    document.getElementById(
-        "mainPrice"
-    ).innerText =
-        "$" +
-        currentPrice.toFixed(2);
+        price.toFixed(2);
 
 
     const change =
         (
-            (
-                currentPrice -
-                4000
-            )
-            /
-            4000
-        ) * 100;
+            price-4000
+        )
+        /
+        4000
+        *
+        100;
 
 
     const changeEl =
         document.getElementById(
-            "priceChange"
+            "topChange"
         );
 
 
@@ -2668,147 +3040,450 @@ function updateChartLabels(
 
     changeEl.style.color =
         change >= 0
-        ? "#45dc83"
-        : "#ff5c70";
+        ? "#42dc83"
+        : "#ef596d";
+
+}
 
 
-    document.getElementById(
-        "openPrice"
-    ).innerText =
-        last.open.toFixed(2);
+/* =========================================================
+   ZOOM IN
+========================================================= */
 
+function zoomIn(){
 
-    document.getElementById(
-        "highPrice"
-    ).innerText =
-        last.high.toFixed(2);
-
-
-    document.getElementById(
-        "lowPrice"
-    ).innerText =
-        last.low.toFixed(2);
-
-
-    document.getElementById(
-        "closePrice"
-    ).innerText =
-        last.close.toFixed(2);
-
-
-    /* current price */
-
-    setLine(
-        "currentPriceLine",
-        priceY(currentPrice)
-    );
-
-
-    document.getElementById(
-        "currentPriceLabel"
-    ).innerText =
-        currentPrice.toFixed(2);
-
-
-    /* entry */
-
-    const entry =
-        parseFloat(
-            document.getElementById(
-                "entry"
-            ).innerText
+    zoom =
+        Math.min(
+            5,
+            zoom * 1.25
         );
 
 
-    const tp1 =
-        parseFloat(
-            document.getElementById(
-                "tp1"
-            ).innerText
+    draw();
+
+}
+
+
+/* =========================================================
+   ZOOM OUT
+========================================================= */
+
+function zoomOut(){
+
+    zoom =
+        Math.max(
+            .5,
+            zoom / 1.25
         );
 
 
-    const tp2 =
-        parseFloat(
-            document.getElementById(
-                "tp2"
-            ).innerText
-        );
+    draw();
+
+}
 
 
-    const sl =
-        parseFloat(
-            document.getElementById(
-                "sl"
-            ).innerText
-        );
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetChart(){
+
+    zoom = 1;
+
+    offset = 0;
+
+    draw();
+
+}
 
 
-    setLine(
-        "entryLine",
-        priceY(entry)
-    );
+/* =========================================================
+   PAN
+========================================================= */
+
+canvas.addEventListener(
+    "mousedown",
+    e => {
+
+        dragging =
+            true;
+
+        dragStartX =
+            e.clientX;
+
+        dragStartOffset =
+            offset;
+
+        canvas.style.cursor =
+            "grabbing";
+
+    }
+);
 
 
-    setLine(
-        "tp1Line",
-        priceY(tp1)
-    );
+window.addEventListener(
+    "mouseup",
+    () => {
+
+        dragging =
+            false;
+
+        canvas.style.cursor =
+            "crosshair";
+
+    }
+);
 
 
-    setLine(
-        "tp2Line",
-        priceY(tp2)
-    );
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        if(!dragging)
+            return;
 
 
-    setLine(
-        "slLine",
-        priceY(sl)
+        const dx =
+            e.clientX -
+            dragStartX;
+
+
+        const visible =
+            getVisible();
+
+
+        const candleSpace =
+            (
+                W-65
+            )
+            /
+            visible.count;
+
+
+        offset =
+            dragStartOffset -
+            Math.round(
+                dx /
+                candleSpace
+            );
+
+
+        const maxOffset =
+            candles.length -
+            10;
+
+
+        offset =
+            Math.max(
+                0,
+                Math.min(
+                    maxOffset,
+                    offset
+                )
+            );
+
+
+        draw();
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE WHEEL ZOOM
+========================================================= */
+
+canvas.addEventListener(
+    "wheel",
+    e => {
+
+        e.preventDefault();
+
+
+        if(
+            e.deltaY < 0
+        ){
+
+            zoomIn();
+
+        }
+        else{
+
+            zoomOut();
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+/* =========================================================
+   TOUCH ZOOM / PAN
+========================================================= */
+
+let touchStartX = 0;
+
+let touchStartDistance = 0;
+
+let touchStartZoom = 1;
+
+
+canvas.addEventListener(
+    "touchstart",
+    e => {
+
+        if(
+            e.touches.length === 1
+        ){
+
+            touchStartX =
+                e.touches[0].clientX;
+
+            dragStartOffset =
+                offset;
+
+        }
+
+
+        if(
+            e.touches.length === 2
+        ){
+
+            touchStartDistance =
+                getTouchDistance(
+                    e.touches
+                );
+
+            touchStartZoom =
+                zoom;
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+canvas.addEventListener(
+    "touchmove",
+    e => {
+
+        e.preventDefault();
+
+
+        if(
+            e.touches.length === 1
+        ){
+
+            const dx =
+                e.touches[0].clientX -
+                touchStartX;
+
+
+            const visible =
+                getVisible();
+
+
+            const candleSpace =
+                (
+                    W-65
+                )
+                /
+                visible.count;
+
+
+            offset =
+                dragStartOffset -
+                Math.round(
+                    dx /
+                    candleSpace
+                );
+
+
+            offset =
+                Math.max(
+                    0,
+                    Math.min(
+                        candles.length-10,
+                        offset
+                    )
+                );
+
+
+            draw();
+
+        }
+
+
+        if(
+            e.touches.length === 2
+        ){
+
+            const distance =
+                getTouchDistance(
+                    e.touches
+                );
+
+
+            const ratio =
+                distance /
+                touchStartDistance;
+
+
+            zoom =
+                Math.max(
+                    .5,
+                    Math.min(
+                        5,
+                        touchStartZoom *
+                        ratio
+                    )
+                );
+
+
+            draw();
+
+        }
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+function getTouchDistance(
+    touches
+){
+
+    const dx =
+        touches[0].clientX -
+        touches[1].clientX;
+
+
+    const dy =
+        touches[0].clientY -
+        touches[1].clientY;
+
+
+    return Math.sqrt(
+        dx*dx +
+        dy*dy
     );
 
 }
 
 
 /* =========================================================
-   SET LINE
+   CROSSHAIR
 ========================================================= */
 
-function setLine(
-    id,
+canvas.addEventListener(
+    "mousemove",
+    e => {
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const x =
+            e.clientX -
+            rect.left;
+
+
+        const y =
+            e.clientY -
+            rect.top;
+
+
+        drawCrosshair(
+            x,
+            y
+        );
+
+    }
+);
+
+
+function drawCrosshair(
+    x,
     y
 ){
 
-    const el =
-        document.getElementById(id);
+    if(
+        dragging
+    )
+        return;
 
-    if(!el) return;
 
-    el.style.top =
-        Math.max(
-            0,
-            Math.min(
-                chartHeight - 1,
-                y
-            )
-        )
-        +
-        "px";
+    draw();
+
+
+    ctx.save();
+
+
+    ctx.strokeStyle =
+        "rgba(160,170,185,.35)";
+
+
+    ctx.setLineDash(
+        [4,4]
+    );
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x,
+        0
+    );
+
+    ctx.lineTo(
+        x,
+        H
+    );
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        y
+    );
+
+    ctx.lineTo(
+        W,
+        y
+    );
+
+    ctx.stroke();
+
+
+    ctx.restore();
 
 }
 
 
 /* =========================================================
-   CHANGE TIMEFRAME
+   TIMEFRAME
 ========================================================= */
 
-function changeTF(
+function setTF(
     button,
     tf
 ){
 
     document
-        .querySelectorAll(".tf")
+        .querySelectorAll(
+            ".tool-btn"
+        )
         .forEach(
             b =>
                 b.classList.remove(
@@ -2822,23 +3497,29 @@ function changeTF(
     );
 
 
-    currentTF =
+    timeframe =
         tf;
 
 
     document.getElementById(
-        "chartTF"
+        "legendTF"
     ).innerText =
         tf;
 
 
     generateCandles();
 
-    drawChart();
+
+    offset = 0;
+
+    zoom = 1;
+
+
+    draw();
 
 
     addAIMessage(
-        "📊 Timeframe changed to <b>"
+        "📊 Chart changed to <b>"
         +
         tf
         +
@@ -2849,116 +3530,467 @@ function changeTF(
 
 
 /* =========================================================
-   MARKET TICK
+   TOGGLE SETUP
 ========================================================= */
 
-function startMarket(){
+function toggleSetup(){
 
-    clearInterval(
-        candleTimer
-    );
-
-
-    candleTimer =
-        setInterval(
-            marketTick,
-            1500
-        );
-
-}
+    showSetup =
+        !showSetup;
 
 
-function marketTick(){
-
-    if(!candles.length)
-        return;
-
-
-    const last =
-        candles[
-            candles.length - 1
-        ];
+    document.getElementById(
+        "setupBadge"
+    ).style.display =
+        showSetup
+        ? "block"
+        : "none";
 
 
-    const volatility =
-        currentTF === "M1"
-        ? .7
-        : currentTF === "M5"
-        ? 1.2
-        : currentTF === "M15"
-        ? 1.8
-        : currentTF === "H1"
-        ? 3
-        : 5;
-
-
-    const move =
-        (
-            Math.random() - .48
-        )
-        *
-        volatility;
-
-
-    last.close += move;
-
-
-    last.high =
-        Math.max(
-            last.high,
-            last.close
-        );
-
-
-    last.low =
-        Math.min(
-            last.low,
-            last.close
-        );
-
-
-    drawChart();
+    draw();
 
 }
 
 
 /* =========================================================
-   TRADING STYLE
+   AI SETUP
 ========================================================= */
 
-function setTradingStyle(
-    button,
-    style
+function updateSetup(
+    signal
 ){
 
-    document
-        .querySelectorAll(
-            ".style-btn"
-        )
-        .forEach(
-            b =>
-                b.classList.remove(
-                    "active"
-                )
+    currentSignal =
+        signal;
+
+
+    const p =
+        price;
+
+
+    if(
+        signal === "BUY"
+    ){
+
+        setupEntry =
+            p;
+
+        setupTP1 =
+            p + 7;
+
+        setupTP2 =
+            p + 14;
+
+        setupTP3 =
+            p + 25;
+
+        setupSL =
+            p - 12;
+
+    }
+    else if(
+        signal === "SELL"
+    ){
+
+        setupEntry =
+            p;
+
+        setupTP1 =
+            p - 7;
+
+        setupTP2 =
+            p - 14;
+
+        setupTP3 =
+            p - 25;
+
+        setupSL =
+            p + 12;
+
+    }
+
+
+    document.getElementById(
+        "entry"
+    ).innerText =
+        setupEntry.toFixed(2);
+
+
+    document.getElementById(
+        "tp1"
+    ).innerText =
+        setupTP1.toFixed(2);
+
+
+    document.getElementById(
+        "tp2"
+    ).innerText =
+        setupTP2.toFixed(2);
+
+
+    document.getElementById(
+        "sl"
+    ).innerText =
+        setupSL.toFixed(2);
+
+
+    const main =
+        document.getElementById(
+            "mainSetup"
         );
 
 
-    button.classList.add(
-        "active"
+    main.className =
+        signal === "BUY"
+        ? "buy"
+        : "sell";
+
+
+    main.innerText =
+        signal === "BUY"
+        ? "🟢 BUY"
+        : "🔴 SELL";
+
+
+    const chartSignal =
+        document.getElementById(
+            "chartSignal"
+        );
+
+
+    chartSignal.className =
+        signal === "BUY"
+        ? "signal buy"
+        : "signal sell";
+
+
+    chartSignal.innerText =
+        signal;
+
+
+    const title =
+        document.getElementById(
+            "setupTitle"
+        );
+
+
+    title.className =
+        signal === "BUY"
+        ? "setup-title"
+        : "setup-title sell";
+
+
+    title.innerText =
+        signal === "BUY"
+        ? "🟢 BUY SETUP"
+        : "🔴 SELL SETUP";
+
+
+    document.getElementById(
+        "setupInfo"
+    ).innerHTML =
+
+        "Entry Zone: "
+        +
+        (
+            p-2
+        ).toFixed(2)
+        +
+        " – "
+        +
+        (
+            p+2
+        ).toFixed(2)
+        +
+        "<br>"
+
+        +
+        "TP: "
+        +
+        setupTP1.toFixed(2)
+        +
+        " / "
+        +
+        setupTP2.toFixed(2)
+        +
+        " / "
+        +
+        setupTP3.toFixed(2);
+
+
+    draw();
+
+}
+
+
+/* =========================================================
+   RUN AI
+========================================================= */
+
+function runAI(){
+
+    const button =
+        document.getElementById(
+            "analyzeBtn"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.innerText =
+        "⏳ AI ANALYZING MARKET...";
+
+
+    setTimeout(
+        () => {
+
+
+            /*
+               DEMO AI ENGINE
+
+               Real version:
+               ChatGPT
+               Gemini
+               DeepSeek
+               will receive identical
+               OHLC market data.
+            */
+
+
+            const random =
+                Math.random();
+
+
+            let signal;
+
+
+            if(
+                random < .20
+            ){
+
+                signal =
+                    "SELL";
+
+            }
+            else if(
+                random < .35
+            ){
+
+                signal =
+                    "WAIT";
+
+            }
+            else{
+
+                signal =
+                    "BUY";
+
+            }
+
+
+            if(
+                signal ===
+                "WAIT"
+            ){
+
+                document.getElementById(
+                    "chartSignal"
+                ).innerText =
+                    "WAIT";
+
+
+                document.getElementById(
+                    "chartSignal"
+                ).className =
+                    "signal wait";
+
+
+                document.getElementById(
+                    "mainSetup"
+                ).innerText =
+                    "🟡 WAIT";
+
+
+                document.getElementById(
+                    "mainSetup"
+                ).className =
+                    "wait";
+
+            }
+            else{
+
+                updateSetup(
+                    signal
+                );
+
+            }
+
+
+            updateAIcards(
+                signal
+            );
+
+
+            addAIMessage(
+
+                "🧠 <b>Multi-AI analysis completed.</b>"
+                +
+                "<br><br>"
+                +
+                "ChatGPT → "
+                +
+                document.getElementById(
+                    "chatgpt"
+                ).innerText
+                +
+                "<br>"
+                +
+                "Gemini → "
+                +
+                document.getElementById(
+                    "gemini"
+                ).innerText
+                +
+                "<br>"
+                +
+                "DeepSeek → "
+                +
+                document.getElementById(
+                    "deepseek"
+                ).innerText
+                +
+                "<br><br>"
+                +
+                "🎯 Final Setup → <b>"
+                +
+                signal
+                +
+                "</b>"
+                +
+                "<br>"
+                +
+                "Timeframe → "
+                +
+                timeframe
+
+            );
+
+
+            button.disabled =
+                false;
+
+
+            button.innerText =
+                "🧠 RUN MULTI-AI ANALYSIS";
+
+
+        },
+        1800
+    );
+
+}
+
+
+/* =========================================================
+   AI CARDS
+========================================================= */
+
+function updateAIcards(
+    signal
+){
+
+    let cSignal =
+        signal;
+
+
+    let gSignal =
+        signal === "WAIT"
+        ? "WAIT"
+        : Math.random()>.25
+        ? signal
+        : "WAIT";
+
+
+    let dSignal =
+        Math.random()>.5
+        ? signal
+        : "WAIT";
+
+
+    setAI(
+        "chatgpt",
+        cSignal,
+        cSignal === "BUY"
+        ? 82
+        : cSignal === "SELL"
+        ? 79
+        : 61
     );
 
 
-    tradingStyle =
-        style;
-
-
-    addAIMessage(
-        "Trading style set to <b>"
-        +
-        style
-        +
-        "</b>."
+    setAI(
+        "gemini",
+        gSignal,
+        gSignal === "BUY"
+        ? 76
+        : gSignal === "SELL"
+        ? 74
+        : 59
     );
+
+
+    setAI(
+        "deepseek",
+        dSignal,
+        dSignal === "BUY"
+        ? 69
+        : dSignal === "SELL"
+        ? 70
+        : 61
+    );
+
+}
+
+
+function setAI(
+    id,
+    signal,
+    confidence
+){
+
+    const el =
+        document.getElementById(
+            id
+        );
+
+
+    el.className =
+        "ai-result "
+        +
+        (
+            signal === "BUY"
+            ? "buy"
+            : signal === "SELL"
+            ? "sell"
+            : "wait"
+        );
+
+
+    el.innerText =
+        signal;
+
+
+    const bar =
+        document.getElementById(
+            id+"Bar"
+        );
+
+
+    if(bar)
+        bar.style.width =
+            confidence+"%";
 
 }
 
@@ -3026,22 +4058,16 @@ function calculateLot(){
 
     const distance =
         Math.abs(
-            entry -
-            sl
+            entry-sl
         );
 
 
     /*
-       DEMO FORMULA ONLY.
+       Simplified demo.
 
-       Real broker calculation must use:
-
-       Contract Size
-       Tick Size
-       Tick Value
-       Account Currency
-       Symbol specification
-       Broker digits
+       Real broker lot calculation
+       must use symbol tick value,
+       tick size and contract size.
     */
 
     const contractSize =
@@ -3065,447 +4091,14 @@ function calculateLot(){
 
     lot =
         Math.floor(
-            lot * 100
-        )
-        / 100;
+            lot*100
+        )/100;
 
 
     document.getElementById(
         "lot"
     ).innerText =
         lot.toFixed(2);
-
-}
-
-
-/* =========================================================
-   MULTI AI ANALYSIS
-========================================================= */
-
-function runMultiAI(){
-
-    const button =
-        document.getElementById(
-            "analyzeBtn"
-        );
-
-
-    button.disabled =
-        true;
-
-
-    button.innerHTML =
-        '<span class="loading"></span> ANALYZING...';
-
-
-    setTimeout(
-        () => {
-
-
-            const price =
-                currentPrice;
-
-
-            /*
-               Prototype analysis.
-
-               Real version:
-               AI receives actual OHLC,
-               indicators and market data.
-            */
-
-
-            const signal =
-                Math.random() > .35
-                ? "BUY"
-                : "WAIT";
-
-
-            const confidence =
-                signal === "BUY"
-                ? 76 +
-                  Math.floor(
-                      Math.random() * 10
-                  )
-                : 58 +
-                  Math.floor(
-                      Math.random() * 10
-                  );
-
-
-            updateDecision(
-                signal,
-                confidence,
-                price
-            );
-
-
-            updateAIResults(
-                signal
-            );
-
-
-            addAIMessage(
-
-                "🧠 <b>Multi-AI analysis completed.</b>"
-                +
-                "<br><br>"
-                +
-                "ChatGPT → "
-                +
-                document.getElementById(
-                    "chatgptSignal"
-                ).innerText
-                +
-                "<br>"
-                +
-                "Gemini → "
-                +
-                document.getElementById(
-                    "geminiSignal"
-                ).innerText
-                +
-                "<br>"
-                +
-                "DeepSeek → "
-                +
-                document.getElementById(
-                    "deepseekSignal"
-                ).innerText
-                +
-                "<br><br>"
-                +
-                "🎯 Consensus → <b>"
-                +
-                signal
-                +
-                "</b>"
-                +
-                "<br>"
-                +
-                "Confidence → "
-                +
-                confidence
-                +
-                "%"
-                +
-                "<br>"
-                +
-                "Timeframe → "
-                +
-                currentTF
-                +
-                "<br>"
-                +
-                "Mode → "
-                +
-                tradingStyle
-
-            );
-
-
-            button.disabled =
-                false;
-
-
-            button.innerHTML =
-                "🧠 RUN MULTI-AI ANALYSIS";
-
-
-        },
-        1800
-    );
-
-}
-
-
-/* =========================================================
-   UPDATE DECISION
-========================================================= */
-
-function updateDecision(
-    signal,
-    confidence,
-    price
-){
-
-    const signalEl =
-        document.getElementById(
-            "signal"
-        );
-
-
-    signalEl.className =
-        "signal " +
-        (
-            signal === "BUY"
-            ? "buy"
-            : signal === "SELL"
-            ? "sell"
-            : "wait"
-        );
-
-
-    signalEl.innerText =
-        signal === "BUY"
-        ? "🟢 BUY"
-        : signal === "SELL"
-        ? "🔴 SELL"
-        : "🟡 WAIT";
-
-
-    document.getElementById(
-        "confidence"
-    ).innerText =
-        confidence +
-        "%";
-
-
-    let entry =
-        price;
-
-
-    let tp1;
-    let tp2;
-    let tp3;
-    let sl;
-
-
-    if(signal === "BUY"){
-
-        tp1 =
-            entry + 7;
-
-        tp2 =
-            entry + 14;
-
-        tp3 =
-            entry + 25;
-
-        sl =
-            entry - 12;
-
-    }
-    else if(signal === "SELL"){
-
-        tp1 =
-            entry - 7;
-
-        tp2 =
-            entry - 14;
-
-        tp3 =
-            entry - 25;
-
-        sl =
-            entry + 12;
-
-    }
-    else{
-
-        tp1 =
-            entry;
-
-        tp2 =
-            entry;
-
-        tp3 =
-            entry;
-
-        sl =
-            entry;
-
-    }
-
-
-    document.getElementById(
-        "entry"
-    ).innerText =
-        entry.toFixed(2);
-
-
-    document.getElementById(
-        "tp1"
-    ).innerText =
-        tp1.toFixed(2);
-
-
-    document.getElementById(
-        "tp2"
-    ).innerText =
-        tp2.toFixed(2);
-
-
-    document.getElementById(
-        "tp3"
-    ).innerText =
-        tp3.toFixed(2);
-
-
-    document.getElementById(
-        "sl"
-    ).innerText =
-        sl.toFixed(2);
-
-
-    const risk =
-        Math.abs(
-            entry - sl
-        );
-
-
-    const reward =
-        Math.abs(
-            tp2 - entry
-        );
-
-
-    const rr =
-        risk > 0
-        ? reward / risk
-        : 0;
-
-
-    document.getElementById(
-        "rr"
-    ).innerText =
-        "1 : " +
-        rr.toFixed(2);
-
-
-    drawChart();
-
-}
-
-
-/* =========================================================
-   UPDATE AI RESULTS
-========================================================= */
-
-function updateAIResults(
-    consensus
-){
-
-    let chatgpt =
-        consensus === "BUY"
-        ? "BUY"
-        : "WAIT";
-
-
-    let gemini =
-        consensus === "BUY"
-        ? "BUY"
-        : "WAIT";
-
-
-    let deepseek =
-        Math.random() > .5
-        ? "BUY"
-        : "WAIT";
-
-
-    setAISignal(
-        "chatgptSignal",
-        chatgpt
-    );
-
-
-    setAISignal(
-        "geminiSignal",
-        gemini
-    );
-
-
-    setAISignal(
-        "deepseekSignal",
-        deepseek
-    );
-
-
-    const c1 =
-        chatgpt === "BUY"
-        ? 82
-        : 64;
-
-
-    const c2 =
-        gemini === "BUY"
-        ? 76
-        : 61;
-
-
-    const c3 =
-        deepseek === "BUY"
-        ? 69
-        : 61;
-
-
-    document.getElementById(
-        "chatgptConfidence"
-    ).innerText =
-        c1 + "%";
-
-
-    document.getElementById(
-        "geminiConfidence"
-    ).innerText =
-        c2 + "%";
-
-
-    document.getElementById(
-        "deepseekConfidence"
-    ).innerText =
-        c3 + "%";
-
-
-    document.getElementById(
-        "chatgptBar"
-    ).style.width =
-        c1 + "%";
-
-
-    document.getElementById(
-        "geminiBar"
-    ).style.width =
-        c2 + "%";
-
-
-    document.getElementById(
-        "deepseekBar"
-    ).style.width =
-        c3 + "%";
-
-}
-
-
-/* =========================================================
-   AI SIGNAL STYLE
-========================================================= */
-
-function setAISignal(
-    id,
-    signal
-){
-
-    const el =
-        document.getElementById(
-            id
-        );
-
-
-    el.className =
-        "ai-signal " +
-        (
-            signal === "BUY"
-            ? "buy"
-            : signal === "SELL"
-            ? "sell"
-            : "wait"
-        );
-
-
-    el.innerText =
-        signal;
 
 }
 
@@ -3542,241 +4135,165 @@ function sendChat(){
     setTimeout(
         () => {
 
-            generateChatResponse(
-                text
+            const q =
+                text.toLowerCase();
+
+
+            let response;
+
+
+            if(
+                q.includes("buy") ||
+                q.includes("sell")
+            ){
+
+                response =
+                    "Current chart setup is "
+                    +
+                    "<b>"
+                    +
+                    currentSignal
+                    +
+                    "</b>."
+                    +
+                    "<br><br>"
+                    +
+                    "Entry: "
+                    +
+                    setupEntry.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "TP1: "
+                    +
+                    setupTP1.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "TP2: "
+                    +
+                    setupTP2.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "TP3: "
+                    +
+                    setupTP3.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "SL: "
+                    +
+                    setupSL.toFixed(2);
+
+            }
+
+            else if(
+                q.includes("zoom")
+            ){
+
+                response =
+                    "You can zoom the chart using "
+                    +
+                    "<b>+</b> and <b>−</b>, "
+                    +
+                    "mouse wheel, or pinch with two fingers on mobile.";
+
+            }
+
+            else if(
+                q.includes("tp")
+            ){
+
+                response =
+                    "Chart TP levels are:"
+                    +
+                    "<br>"
+                    +
+                    "TP1 → "
+                    +
+                    setupTP1.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "TP2 → "
+                    +
+                    setupTP2.toFixed(2)
+                    +
+                    "<br>"
+                    +
+                    "TP3 → "
+                    +
+                    setupTP3.toFixed(2);
+
+            }
+
+            else if(
+                q.includes("lot")
+            ){
+
+                response =
+                    "Use the Risk & Lot Size calculator below. "
+                    +
+                    "The real version should use the exact "
+                    +
+                    "broker contract specification.";
+
+            }
+
+            else{
+
+                response =
+                    "XAU AI 3 is currently analyzing "
+                    +
+                    "<b>"
+                    +
+                    timeframe
+                    +
+                    "</b>"
+                    +
+                    " candles."
+                    +
+                    "<br><br>"
+                    +
+                    "You can ask me:"
+                    +
+                    "<br>"
+                    +
+                    "• BUY or SELL?"
+                    +
+                    "<br>"
+                    +
+                    "• Where is the setup?"
+                    +
+                    "<br>"
+                    +
+                    "• Where are TP levels?"
+                    +
+                    "<br>"
+                    +
+                    "• What is the SL?"
+                    +
+                    "<br>"
+                    +
+                    "• Calculate lot size.";
+
+            }
+
+
+            addAIMessage(
+                response
             );
 
         },
-        600
+        500
     );
 
 }
 
 
 /* =========================================================
-   CHAT RESPONSE
-========================================================= */
-
-function generateChatResponse(
-    question
-){
-
-    const q =
-        question.toLowerCase();
-
-
-    let response;
-
-
-    if(
-        q.includes("buy") ||
-        q.includes("sell")
-    ){
-
-        response =
-            "Current prototype consensus is "
-            +
-            "<b>"
-            +
-            document.getElementById(
-                "signal"
-            ).innerText
-            +
-            "</b>."
-            +
-            "<br><br>"
-            +
-            "Entry: "
-            +
-            document.getElementById(
-                "entry"
-            ).innerText
-            +
-            "<br>"
-            +
-            "TP1: "
-            +
-            document.getElementById(
-                "tp1"
-            ).innerText
-            +
-            "<br>"
-            +
-            "TP2: "
-            +
-            document.getElementById(
-                "tp2"
-            ).innerText
-            +
-            "<br>"
-            +
-            "TP3: "
-            +
-            document.getElementById(
-                "tp3"
-            ).innerText
-            +
-            "<br>"
-            +
-            "SL: "
-            +
-            document.getElementById(
-                "sl"
-            ).innerText
-            +
-            "<br><br>"
-            +
-            "This prototype uses simulated data.";
-
-    }
-
-
-    else if(
-        q.includes("tp") ||
-        q.includes("target")
-    ){
-
-        response =
-            "Current targets:"
-            +
-            "<br><br>"
-            +
-            "TP1 → "
-            +
-            document.getElementById(
-                "tp1"
-            ).innerText
-            +
-            "<br>"
-            +
-            "TP2 → "
-            +
-            document.getElementById(
-                "tp2"
-            ).innerText
-            +
-            "<br>"
-            +
-            "TP3 → "
-            +
-            document.getElementById(
-                "tp3"
-            ).innerText;
-
-    }
-
-
-    else if(
-        q.includes("lot") ||
-        q.includes("position")
-    ){
-
-        response =
-            "Use the Position / Lot Calculator."
-            +
-            "<br><br>"
-            +
-            "Lot size should be based on:"
-            +
-            "<br>• Account balance"
-            +
-            "<br>• Risk %"
-            +
-            "<br>• SL distance"
-            +
-            "<br>• Broker contract specification.";
-
-    }
-
-
-    else if(
-        q.includes("time") ||
-        q.includes("short") ||
-        q.includes("long")
-    ){
-
-        response =
-            "Current mode: <b>"
-            +
-            tradingStyle
-            +
-            "</b>"
-            +
-            "<br>"
-            +
-            "Primary timeframe: <b>"
-            +
-            currentTF
-            +
-            "</b>.";
-
-    }
-
-
-    else if(
-        q.includes("chart") ||
-        q.includes("candle")
-    ){
-
-        response =
-            "The chart is currently showing "
-            +
-            "<b>"
-            +
-            currentTF
-            +
-            "</b>"
-            +
-            " candles for XAU/USD."
-            +
-            "<br><br>"
-            +
-            "Use the timeframe buttons above "
-            +
-            "to change the analysis period.";
-
-    }
-
-
-    else{
-
-        response =
-            "I can analyze XAU/USD using "
-            +
-            "<b>"
-            +
-            currentTF
-            +
-            "</b>"
-            +
-            " and "
-            +
-            "<b>"
-            +
-            tradingStyle
-            +
-            "</b>"
-            +
-            " mode."
-            +
-            "<br><br>"
-            +
-            "Try asking: "
-            +
-            "\"Should I BUY now?\"";
-
-    }
-
-
-    addAIMessage(
-        response
-    );
-
-}
-
-
-/* =========================================================
-   ADD CHAT
+   CHAT FUNCTIONS
 ========================================================= */
 
 function addUserMessage(
@@ -3854,17 +4371,20 @@ function addAIMessage(
 
 
 /* =========================================================
-   ENTER KEY
+   ENTER CHAT
 ========================================================= */
 
-document.getElementById(
+document
+.getElementById(
     "chatInput"
-).addEventListener(
+)
+.addEventListener(
     "keydown",
-    function(event){
+    e => {
 
         if(
-            event.key === "Enter"
+            e.key ===
+            "Enter"
         ){
 
             sendChat();
@@ -3876,81 +4396,77 @@ document.getElementById(
 
 
 /* =========================================================
-   MOUSE CROSSHAIR
+   DEMO LIVE CANDLE
 ========================================================= */
 
-const chartContainer =
-    document.getElementById(
-        "chartContainer"
-    );
+setInterval(
+    () => {
+
+        if(
+            !candles.length
+        )
+            return;
 
 
-chartContainer.addEventListener(
-    "mousemove",
-    function(event){
-
-        const rect =
-            chartContainer
-            .getBoundingClientRect();
+        const last =
+            candles[
+                candles.length-1
+            ];
 
 
-        const x =
-            event.clientX -
-            rect.left;
+        const volatility =
+            getVolatility();
 
 
-        const y =
-            event.clientY -
-            rect.top;
+        const move =
+            (
+                Math.random()-.48
+            )
+            *
+            volatility;
 
 
-        const crossX =
-            document.getElementById(
-                "crossX"
+        last.close +=
+            move;
+
+
+        last.high =
+            Math.max(
+                last.high,
+                last.close
             );
 
 
-        const crossY =
-            document.getElementById(
-                "crossY"
+        last.low =
+            Math.min(
+                last.low,
+                last.close
             );
 
 
-        crossX.style.top =
-            y + "px";
+        price =
+            last.close;
 
 
-        crossY.style.left =
-            x + "px";
+        draw();
 
-
-        crossX.style.display =
-            "block";
-
-
-        crossY.style.display =
-            "block";
-
-    }
+    },
+    1600
 );
 
 
-chartContainer.addEventListener(
-    "mouseleave",
-    function(){
+/* =========================================================
+   INIT
+========================================================= */
 
-        document.getElementById(
-            "crossX"
-        ).style.display =
-            "none";
+generateCandles();
 
+resizeCanvas();
 
-        document.getElementById(
-            "crossY"
-        ).style.display =
-            "none";
+calculateLot();
 
-    }
+updateSetup(
+    "BUY"
 );
 
 </script>
